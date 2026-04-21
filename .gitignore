@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# LinkedIn post drafts (personal, not for public repo)
+LINKEDIN_POST.md

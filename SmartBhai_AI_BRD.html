@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartBhai AI — Business Requirements & Technical Breakdown</title>
+<style>
+@media print { body { font-size: 11pt; } .page-break { page-break-before: always; } }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; color: #1a1a2e; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px 30px; background: #fff; }
+h1 { font-size: 28px; color: #6C2BD9; margin-bottom: 6px; }
+h2 { font-size: 20px; color: #6C2BD9; margin: 30px 0 12px; border-bottom: 2px solid #6C2BD9; padding-bottom: 6px; }
+h3 { font-size: 16px; color: #333; margin: 20px 0 8px; }
+p, li { font-size: 13px; margin-bottom: 8px; }
+ul, ol { padding-left: 20px; margin-bottom: 12px; }
+strong { color: #1a1a2e; }
+.subtitle { font-size: 15px; color: #555; margin-bottom: 20px; }
+.highlight { background: #f3e8ff; border-left: 4px solid #6C2BD9; padding: 12px 16px; border-radius: 6px; margin: 16px 0; font-size: 13px; }
+.highlight-amber { background: #fef3c7; border-left: 4px solid #F59E0B; }
+.highlight-green { background: #d1fae5; border-left: 4px solid #10B981; }
+.highlight-red { background: #fee2e2; border-left: 4px solid #EF4444; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 12px; }
+th { background: #6C2BD9; color: #fff; padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 8px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+tr:nth-child(even) { background: #f9fafb; }
+tr:hover { background: #f3e8ff; }
+.green { color: #10B981; font-weight: 700; }
+.red { color: #EF4444; font-weight: 700; }
+.amber { color: #F59E0B; font-weight: 700; }
+.purple { color: #6C2BD9; font-weight: 700; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.stat-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; text-align: center; }
+.stat-num { font-size: 22px; font-weight: 800; color: #6C2BD9; }
+.stat-label { font-size: 11px; color: #666; margin-top: 4px; }
+.footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 11px; color: #999; text-align: center; }
+</style>
+</head>
+<body>
+<h1>SmartBhai AI</h1>
+<p class="subtitle">Comprehensive Breakdown — Technical Architecture, Competitive Analysis, Financial Economics & Interview Prep</p>
+<p style="font-size:12px;color:#888;">Prepared: April 2026 | Confidential</p>
+
+<!-- SECTION 1: THE PROBLEM -->
+<h2>1. The Problem We're Solving</h2>
+
+<div class="stat-grid">
+  <div class="stat-box"><div class="stat-num">21.59 Cr</div><div class="stat-label">Demat Accounts (Dec 2025)<br><span style="font-size:9px">Source: CDSL+NSDL via BusinessWorld</span></div></div>
+  <div class="stat-box"><div class="stat-num">60%+</div><div class="stat-label">From Tier-2/3 Cities<br><span style="font-size:9px">Source: Industry estimate, Economic Survey FY26</span></div></div>
+  <div class="stat-box"><div class="stat-num">91%</div><div class="stat-label">Retail F&O Traders Lose<br><span style="font-size:9px">Source: SEBI Study, Jul 2025</span></div></div>
+  <div class="stat-box"><div class="stat-num">₹1.06L Cr</div><div class="stat-label">Net Retail F&O Loss (FY25)<br><span style="font-size:9px">Source: SEBI via Indian Express</span></div></div>
+  <div class="stat-box"><div class="stat-num">20 Cr+</div><div class="stat-label">Top-5 Discount Broker Users<br><span style="font-size:9px">Source: Industry combined registrations</span></div></div>
+  <div class="stat-box"><div class="stat-num">~₹8K Cr</div><div class="stat-label">Indian Broking Revenue Pool<br><span style="font-size:9px">Source: Industry estimates, FY25</span></div></div>
+</div>
+
+<p>India's retail investor base has exploded 6x since 2019, but the gap between data availability and user understanding is massive. Tier-2/3 investors face:</p>
+<ul>
+  <li><strong>Information Overload</strong> — Raw charts, ratios, and jargon with no personalized context</li>
+  <li><strong>Options Complexity</strong> — OI, IV, PCR, Greeks are incomprehensible to non-experts</li>
+  <li><strong>Language Barrier</strong> — Most financial content is English-only; Tier-2/3 users think in Hindi</li>
+  <li><strong>No Personalized Guidance</strong> — Generic tips don't account for individual holdings</li>
+  <li><strong>Decision Paralysis</strong> — Too many choices, no framework for confident decisions</li>
+  <li><strong>Risk Blindness</strong> — Investors don't understand their actual risk exposure</li>
+</ul>
+
+<div class="highlight">
+  <strong>The Opportunity:</strong> Every competitor built AI for metro power users. Nobody built AI for the 60%+ of new investors coming from Jaipur, Indore, Lucknow, Raipur — in their language, at their level, inside the app they already use.
+</div>
+
+<!-- SECTION 2: INDIAN BROKER OPPORTUNITY -->
+<h2>2. The Indian Retail Broking Market — Sizing the Opportunity</h2>
+
+<p>India's retail broking market is one of the fastest-growing segments in financial services globally. The numbers below represent the broad market SmartBhai AI can plug into — as a white-label solution for discount brokers, or as a standalone consumer app.</p>
+
+<table>
+  <tr><td><strong>Total Demat Accounts (India)</strong></td><td>21.6 Cr+ (Dec 2025) — up from 3.6 Cr in 2019. Source: CDSL + NSDL.</td></tr>
+  <tr><td><strong>Monthly Active Traders (NSE)</strong></td><td>~4.5 Cr unique users trade on NSE each month (FY26 avg)</td></tr>
+  <tr><td><strong>Tier-2/3 Share of New Accounts</strong></td><td>60%+ of new demat openings come from non-metro cities. Source: Economic Survey FY26.</td></tr>
+  <tr><td><strong>Retail Ownership of NSE</strong></td><td>18.75% of market value — 22-year high (Q2 FY26)</td></tr>
+  <tr><td><strong>Monthly SIP Inflows</strong></td><td>₹29,500 Cr/month (Oct 2025) — shows rising retail discipline</td></tr>
+  <tr><td><strong>F&O Loss Rate (retail)</strong></td><td>91% of retail F&O traders lose money — net loss of ₹1.06 Lakh Cr in FY25. Source: SEBI study, Jul 2025.</td></tr>
+  <tr><td><strong>Top-5 Discount Broker Combined Users</strong></td><td>~20 Cr+ registered (Zerodha, Groww, Upstox, Angel One, 5paisa)</td></tr>
+  <tr><td><strong>Average Discount-Broker Brokerage</strong></td><td>₹20 flat per executed order (industry standard); packs at ₹10/order</td></tr>
+  <tr><td><strong>Current AI Landscape</strong></td><td>Most AI features are developer-only (MCP servers), beta (GR-1), or rate-limited (FIA). Zero Hinglish-native, in-app conversational AI for retail.</td></tr>
+</table>
+
+<div class="highlight">
+  <strong>SmartBhai's Positioning:</strong> This is a ~20 Cr user Total Addressable Market with exploding Tier-2/3 growth, a catastrophic F&O loss problem, and no Hinglish-native AI solution. That's the opening.
+</div>
+
+<!-- SECTION 3: TECHNICAL ARCHITECTURE -->
+<div class="page-break"></div>
+<h2>3. Technical Architecture — What We Built</h2>
+
+<h3>Tech Stack</h3>
+<table>
+  <tr><th>Component</th><th>Technology</th><th>Why</th></tr>
+  <tr><td>Frontend</td><td>React 19 + Vite 8</td><td>Mobile-first PWA, 430px max-width, sub-200ms dev startup</td></tr>
+  <tr><td>Charts</td><td>Recharts</td><td>Portfolio area charts, sector pie charts</td></tr>
+  <tr><td>Icons</td><td>Lucide React</td><td>Lightweight, tree-shakeable icon library</td></tr>
+  <tr><td>LLM</td><td>OpenRouter API → Llama 3.3 70B</td><td>Free, open-source, 6-model fallback chain</td></tr>
+  <tr><td>Persistence</td><td>localStorage</td><td>Memory, profile, streaks, tier data, onboarding — zero backend needed</td></tr>
+  <tr><td>Styling</td><td>CSS custom properties</td><td>Dark theme, consistent design system</td></tr>
+</table>
+
+<h3>Three-Layer Architecture</h3>
+<table>
+  <tr><th>Layer</th><th>Components</th><th>What It Does</th></tr>
+  <tr><td><strong>Layer 1: Intelligence Engine</strong></td><td>InvestorMemory (50 facts, 10 goals, 30 risk signals), InvestorProfile (15 signal types, smoothed 0-100 scoring), Market Sentiment Engine (9 indicators)</td><td>Remembers users, adapts to risk appetite, analyzes market mood</td></tr>
+  <tr><td><strong>Layer 2: AI Features</strong></td><td>Portfolio Analyzer, Options Simplifier, Strategy Builder (Buy+Sell), P&L Simulator, Covered Call Detector, Earnings Simulator, Risk Gate, SEBI Compliance</td><td>8 interconnected AI features solving specific Tier-2/3 problems</td></tr>
+  <tr><td><strong>Layer 3: Interaction Surfaces</strong></td><td>5 screens (Home, Chat, Portfolio, Options, Learn), Onboarding flow, Notification panel, Tier system</td><td>Where users interact with AI — every surface has AI integration</td></tr>
+</table>
+
+<h3>Key Technical Decisions</h3>
+
+<p><strong>RAG (Retrieval-Augmented Generation):</strong> System prompt injects actual portfolio holdings, sector allocation, options chain data, stock-specific options, and all 9 market indicators. Prevents hallucination — AI can't fabricate numbers because real data is in the prompt.</p>
+
+<h3>Options Chain Simplification — The "4 Key Levels"</h3>
+<p>A raw options chain has 15+ columns × 30+ strikes — completely overwhelming for Tier-2/3 investors. Our AI distills it into 4 actionable numbers:</p>
+<table>
+  <tr><th>#</th><th>Level</th><th>What It Is</th><th>Prototype Value</th><th>Plain-English Meaning</th></tr>
+  <tr><td>1</td><td>🧲 <strong>Max Pain</strong></td><td>Price where most option buyers lose money. Market gravitates here near expiry.</td><td>22,450</td><td>"NIFTY ka gravity point — expiry pe yahan aane ki koshish karta hai"</td></tr>
+  <tr><td>2</td><td>🟢 <strong>Support (Highest Put OI)</strong></td><td>Strike with most put open interest. Big money sold puts here = confident market won't fall below.</td><td>22,600</td><td>"Floor — bade players ne yahan bet lagaya hai ki market neeche nahi jayega"</td></tr>
+  <tr><td>3</td><td>🔴 <strong>Resistance (Highest Call OI)</strong></td><td>Strike with most call open interest. Big money sold calls here = don't expect market above this.</td><td>22,500</td><td>"Ceiling — bade players ne yahan bet lagaya hai ki market upar nahi jayega"</td></tr>
+  <tr><td>4</td><td>💎 <strong>IV Percentile</strong></td><td>Are options cheap or expensive vs history? &lt;25% = cheap (buy). &gt;75% = expensive (sell).</td><td>62% (moderate)</td><td>"Sale season indicator — low IV = options on sale, buy protection"</td></tr>
+</table>
+<p><strong>AI output from these 4 levels:</strong> "Market expects NIFTY to stay between 22,400-22,600. PCR at 0.93 is neutral. Options moderately priced. If bullish → Bull Call Spread 22,400-22,500. If want protection → buy 22,200 PE at ₹62." — Entire options chain in one paragraph.</p>
+
+<p><strong>Adaptive Profiling without ML training:</strong> Weighted signal formula: <code>(risky×3 + moderate×1.5) / (safe×2 + moderate×1.5 + risky×3 + 1) × 100</code>. Score smoothed with 30% previous + 70% new. Classifies: Safe (0-29), Moderate (30-64), Risky (65-100).</p>
+
+<p><strong>6-Model Fallback Chain:</strong> Llama 3.3 70B → Gemma 27B → Gemma 12B → Mistral Small 24B → Gemma 4B → Llama 3.2 3B. Rotates starting index on success. Zero cost, zero downtime.</p>
+
+<p><strong>Risk Gate System:</strong> 6 regex patterns detect dangerous intent (naked selling, all-in, short straddle) in real-time as user types. Color-coded warning banner appears before sending. System prompt forces AI to lead with warnings.</p>
+
+<p><strong>SEBI Compliance:</strong> 7 hard rules in system prompt — no direct buy/sell recommendations, no guaranteed returns, mandatory disclaimers, max-loss-first framing, naked selling protocol.</p>
+
+<h3>Options Strategies Implemented</h3>
+<table>
+  <tr><th>Strategy</th><th>Type</th><th>Definition</th><th>When to Use</th><th>Risk</th></tr>
+  <tr><td><strong>Bull Call Spread</strong></td><td>Buy</td><td>Buy a lower-strike call + sell a higher-strike call at the same expiry. Caps both profit and loss.</td><td>Mildly bullish — expect moderate upside</td><td>Limited: net premium paid</td></tr>
+  <tr><td><strong>Bear Put Spread</strong></td><td>Buy</td><td>Buy a higher-strike put + sell a lower-strike put. Profits when market falls.</td><td>Mildly bearish — expect moderate downside</td><td>Limited: net premium paid</td></tr>
+  <tr><td><strong>Long Call / Long Put</strong></td><td>Buy</td><td>Buy a call (bullish) or put (bearish) outright. Simplest options trade.</td><td>Strong directional view</td><td>Limited: full premium paid (but 100% of it)</td></tr>
+  <tr><td><strong>Iron Condor</strong></td><td>Buy+Sell</td><td>Sell a call spread + sell a put spread simultaneously. 4 legs. Earn premium if market stays in a range.</td><td>Neutral — expect low volatility, range-bound market</td><td>Limited: difference between strikes minus premium</td></tr>
+  <tr><td><strong>Butterfly Spread</strong></td><td>Buy+Sell</td><td>Buy 1 lower call + sell 2 middle calls + buy 1 higher call. Max profit if market pins at middle strike.</td><td>Pinpoint view — expect market to settle at a specific price</td><td>Limited: very low net premium</td></tr>
+  <tr><td><strong>Protective Put</strong></td><td>Buy</td><td>Buy a put on stocks you already own. Acts as insurance against a fall.</td><td>Hold stocks but fear a crash</td><td>Limited: premium paid (insurance cost)</td></tr>
+  <tr><td><strong>Covered Call</strong></td><td>Sell</td><td>Sell a call on stocks you already own. Earn premium income. If stock rises above strike, shares get called away.</td><td>Hold stocks, want income, mildly bullish/neutral</td><td>Opportunity cost: miss upside above strike. No cash loss.</td></tr>
+  <tr><td><strong>Credit Spread</strong></td><td>Sell</td><td>Sell a higher-premium option + buy a lower-premium option at a further strike. Collect net credit upfront.</td><td>Directional view with defined risk</td><td>Limited: difference between strikes minus credit</td></tr>
+  <tr><td><strong>Cash-Secured Put</strong></td><td>Sell</td><td>Sell a put while keeping enough cash to buy the stock if assigned. Get paid to wait for a lower entry price.</td><td>Want to buy a stock cheaper + earn income while waiting</td><td>Must buy stock at strike if it falls — but you wanted to anyway</td></tr>
+  <tr><td><strong>Collar</strong></td><td>Sell+Buy</td><td>Own stock + buy a protective put + sell a covered call. The call premium offsets the put cost.</td><td>Protect gains on a winning stock at near-zero cost</td><td>Limited upside (capped at call strike), limited downside (put protects)</td></tr>
+</table>
+
+<h3>9 Market Sentiment Indicators</h3>
+<p>The AI analyzes all 9 simultaneously and gives an overall sentiment verdict with plain-language explanations and analogies.</p>
+<table>
+  <tr><th>#</th><th>Indicator</th><th>What It Measures</th><th>Ranges</th><th>Analogy for Tier-2/3 Users</th></tr>
+  <tr><td>1</td><td>🌡️ India VIX</td><td>Market fear/volatility expectation</td><td>&lt;13 Bullish · 13-18 Neutral · 18-25 Cautious · &gt;25 Bearish</td><td>"Fear thermometer — normal temperature means no fever in the market"</td></tr>
+  <tr><td>2</td><td>⚖️ Put-Call Ratio (PCR)</td><td>Ratio of put OI to call OI — crowd sentiment</td><td>&gt;1.2 Bullish · 0.9-1.2 Neutral · &lt;0.9 Bearish</td><td>"Umbrella count at a cricket match — many umbrellas = rain usually doesn't come"</td></tr>
+  <tr><td>3</td><td>🐋 FII/DII Flows</td><td>Foreign & domestic institutional buying/selling</td><td>FII buying &gt;₹500 Cr = Strong bullish</td><td>"Big whales in the ocean — when they swim in, the tide rises for everyone"</td></tr>
+  <tr><td>4</td><td>🏎️ RSI (14-day)</td><td>Momentum — is the stock running too fast or too slow?</td><td>&gt;70 Overbought · 30-70 Normal · &lt;30 Oversold</td><td>"Speedometer — above 70 means running too fast, may need to slow down"</td></tr>
+  <tr><td>5</td><td>🏃 MACD</td><td>Trend direction — fast line vs slow line crossover</td><td>Bullish crossover = buy signal · Bearish crossover = sell signal</td><td>"Two runners — when the fast runner overtakes the slow one, it's a buy signal"</td></tr>
+  <tr><td>6</td><td>📏 Bollinger Bands</td><td>Price range — is price stretched too far from average?</td><td>Near upper = overbought · Near lower = oversold · Middle = neutral</td><td>"Rubber band — price snaps back to the middle when stretched too far"</td></tr>
+  <tr><td>7</td><td>📐 Moving Averages</td><td>Trend health — is price above or below its average mood?</td><td>Above all MAs = strong uptrend · Below = downtrend</td><td>"Stock's average mood — being above it means mood has been consistently positive"</td></tr>
+  <tr><td>8</td><td>🧲 Max Pain</td><td>Price where most option buyers lose money — market's gravity point</td><td>Market tends to gravitate toward Max Pain near expiry</td><td>"Gravity point — NIFTY gets pulled toward this price as expiry approaches"</td></tr>
+  <tr><td>9</td><td>💎 IV Percentile</td><td>Are options cheap or expensive relative to history?</td><td>&gt;75% Expensive (sell) · 25-75% Normal · &lt;25% Cheap (buy)</td><td>"Sale season — when IV is low, options are on sale, good time to buy protection"</td></tr>
+</table>
+
+<h3>15 Adaptive Profile Signal Types</h3>
+<p>Every user message is analyzed for behavioral signals. These accumulate over time to build a risk profile (Safe/Moderate/Risky) without any explicit questionnaire.</p>
+<table>
+  <tr><th>#</th><th>Signal</th><th>Detected When User Mentions</th><th>Risk Direction</th></tr>
+  <tr><td>1</td><td>asksAboutRisk</td><td>risk, safe, protect, hedge, stop-loss, insurance</td><td>🛡️ Safe</td></tr>
+  <tr><td>2</td><td>asksAboutHedging</td><td>hedge, protect, insurance, collar</td><td>🛡️ Safe</td></tr>
+  <tr><td>3</td><td>asksAboutSIP</td><td>SIP, long-term, mutual fund, FD, safe invest</td><td>🛡️ Safe</td></tr>
+  <tr><td>4</td><td>asksAboutDiversification</td><td>diversify, spread risk, reduce risk, rebalance</td><td>🛡️ Safe</td></tr>
+  <tr><td>5</td><td>asksAboutStopLoss</td><td>stop-loss, trailing, protect profit, exit strategy</td><td>🛡️ Safe</td></tr>
+  <tr><td>6</td><td>asksAboutOptions</td><td>option, call, put, strike, expiry, premium, chain</td><td>⚖️ Moderate</td></tr>
+  <tr><td>7</td><td>asksAboutCoveredCalls</td><td>covered call, sell call on holdings, income from options</td><td>⚖️ Moderate</td></tr>
+  <tr><td>8</td><td>asksAboutSpreads</td><td>spread, condor, butterfly, collar, credit spread</td><td>⚖️ Moderate</td></tr>
+  <tr><td>9</td><td>asksAboutIncome</td><td>income, dividend, earn from, premium collect</td><td>⚖️ Moderate</td></tr>
+  <tr><td>10</td><td>asksAboutTechnicals</td><td>RSI, MACD, Bollinger, moving average, chart, pattern</td><td>⚖️ Moderate</td></tr>
+  <tr><td>11</td><td>asksAboutSentiment</td><td>sentiment, VIX, PCR, FII, DII, mood, outlook</td><td>⚖️ Moderate</td></tr>
+  <tr><td>12</td><td>asksAboutAggressive</td><td>intraday, scalp, leverage, margin, F&O, futures, YOLO</td><td>🔥 Risky</td></tr>
+  <tr><td>13</td><td>asksAboutNakedOptions</td><td>naked, sell option, short straddle, aggressive, unlimited</td><td>🔥 Risky</td></tr>
+  <tr><td>14</td><td>asksAboutLearning</td><td>kya hai, what is, explain, teach, learn, basic, beginner, 101</td><td>📚 Learning (lowers risk score)</td></tr>
+  <tr><td>15</td><td>triggeredRiskGate</td><td>Automatically incremented when risk gate warning fires</td><td>⚠️ Tracked (flags risky behavior)</td></tr>
+</table>
+
+<h3>Freemium Tier System</h3>
+<table>
+  <tr><th>Tier</th><th>Unlock Condition</th><th>Features</th><th>Goal</th></tr>
+  <tr><td class="purple">🆓 FREE (AI Lite)</td><td>Every user, zero conditions</td><td>3 AI messages/day, market summary, basic glossary, portfolio health score (number only)</td><td>Hook users, show AI value, create upgrade desire</td></tr>
+  <tr><td class="amber">⚡ SMART (AI Pro)</td><td>₹50K wallet OR 20 trades/month OR ₹2L portfolio OR ₹399/mo pack</td><td>Unlimited AI chat + memory, full options AI, strategy builder (buy+sell), P&L simulator, all lessons, 9 indicators</td><td>Reward active traders, incentivize deposits & volume</td></tr>
+  <tr><td class="purple">🏆 ELITE (AI Ultra)</td><td>₹5L portfolio OR 50 trades/month OR ₹899/mo pack OR ₹2L wallet</td><td>Everything in Smart + trade ideas, Greeks, multi-leg builder, hedging recs, earnings simulator, PDF export, priority AI</td><td>Retain HNI traders, maximize lifetime value</td></tr>
+</table>
+
+<!-- SECTION 4: COMPETITIVE ANALYSIS -->
+<div class="page-break"></div>
+<h2>4. Competitive Analysis — Top 10 Competitors</h2>
+
+<h3>4.1 Detailed Competitor Breakdown</h3>
+
+<table>
+  <tr><th>Competitor</th><th>Users</th><th>AI Offering</th><th>Key Weakness</th><th>SmartBhai AI Advantage</th></tr>
+  <tr>
+    <td><strong>Zerodha</strong></td>
+    <td>1.5 Cr+ active</td>
+    <td>Kite MCP — connects to Claude/Cursor/Windsurf externally. Nudge system for risky trades. Perplexity partnership.</td>
+    <td>MCP is developer-only, requires Claude Desktop setup. No in-app AI. No Hinglish. No memory. No options strategy builder.</td>
+    <td>In-app AI, zero setup. Hinglish. Memory + profiling. Strategy builder. Education layer.</td>
+  </tr>
+  <tr>
+    <td><strong>Groww</strong></td>
+    <td>12 Cr+ registered</td>
+    <td>GR-1 AI assistant (beta, opt-in). Groww MCP for developers. Groww Prime (paid analytics). 6 AI products announced Mar 2026.</td>
+    <td>GR-1 still in beta. No options depth. No Hinglish. No adaptive profiling. Prime is paid subscription for basic analytics.</td>
+    <td>Full options AI. Adaptive profiling. Hinglish. Risk gate. Free tier with real features. F&O depth Groww lacks entirely.</td>
+  </tr>
+  <tr>
+    <td><strong>Upstox</strong></td>
+    <td>1.3 Cr+</td>
+    <td>MCP integration to Claude/VS Code. OAuth-based, read-only. Advanced option chain on platform.</td>
+    <td>MCP = developer-only. No in-app AI. TrustScore 1.6/5. App instability. WhatsApp chatbot is basic FAQ. No memory.</td>
+    <td>Everything in-app. Memory persists. Profiling. Hinglish. Education. Covered calls. No setup required.</td>
+  </tr>
+  <tr>
+    <td><strong>Fyers</strong></td>
+    <td>Growing (tech-focused)</td>
+    <td>FIA (in-app screener AI), FIA GPT (ChatGPT integration), MCP server. Three separate products.</td>
+    <td>FIA gives gibberish after ~10 queries (official docs). FIA GPT needs ChatGPT+ subscription. 3 confusing products. Rate limited 3 prompts/min. No memory. No profiling.</td>
+    <td>One unified AI. Memory that persists. Free. Adaptive profiling. Hinglish. SEBI guardrails. Education-first.</td>
+  </tr>
+  <tr>
+    <td><strong>Dhan</strong></td>
+    <td>1M+</td>
+    <td>ScanX (50+ screeners). Building "Fuzz" agentic AI and "Artham" SLM for capital markets (announced, not live).</td>
+    <td>ScanX is a screener, not conversational AI. Fuzz/Artham still in development. No education. "Not ideal for beginners." No Hinglish.</td>
+    <td>Live conversational AI now. Education-first. Hinglish. Beginner-friendly. Options simplification. Dhan's UI alienates Tier-2/3.</td>
+  </tr>
+  <tr>
+    <td><strong>Angel One</strong></td>
+    <td>2.5 Cr+ clients</td>
+    <td>AI-powered Super App. SmartAPI for algo trading. No conversational AI assistant.</td>
+    <td>SmartAPI requires coding. No conversational AI. No options simplification. No Hinglish. No education. Assumes knowledge.</td>
+    <td>Conversational AI that explains everything. Options simplified. Hinglish. Education hub. Risk gate. Covered calls.</td>
+  </tr>
+  <tr>
+    <td><strong>INDmoney</strong></td>
+    <td>10M+</td>
+    <td>AI-driven wealth tracking (email/SMS ingestion). Portfolio analytics. "Protect" feature with stop-loss.</td>
+    <td>No conversational AI — push-based only. Major privacy concerns (Aadhaar pulled without consent). No F&O depth. Generic recommendations. Forces app download.</td>
+    <td>Conversational AI (users can ASK). Deep F&O analysis. Adaptive profiling. Strategy builder + P&L simulator. Memory. Transparent data.</td>
+  </tr>
+  <tr>
+    <td><strong>Multibagg AI</strong></td>
+    <td>Early stage</td>
+    <td>Pure conversational AI for stock research (NSE/BSE). Portfolio connect. Shark Tank featured. ₹1.5 Cr pre-seed.</td>
+    <td>Not a broker — can't trade. No options analysis. No strategy builder. No risk profiling. No Hinglish. English-only. Research only.</td>
+    <td>Research + trading in one app. Full options. Strategy builder. Education. Profiling. Hinglish. Memory. No context switching.</td>
+  </tr>
+  <tr>
+    <td><strong>Kagger AI</strong></td>
+    <td>Early stage</td>
+    <td>AI-powered stock research. Multi-agent analysis of fundamentals, news, analyst reports, earnings.</td>
+    <td>Research-only, not a broker. No options. No portfolio-aware responses. No Hinglish. No profiling. Very early stage.</td>
+    <td>Integrated broker with real portfolio data. Options AI. Strategy builder. Hinglish. Memory. Profiling. Education.</td>
+  </tr>
+  <tr>
+    <td><strong>Paytm Money</strong></td>
+    <td>Part of Paytm ecosystem</td>
+    <td>AI-led spending categorization, balance tracking, monthly summaries. Perplexity partnership. "Protect" feature.</td>
+    <td>AI is about payments/spending, not investing intelligence. No conversational trading AI. No options. No strategy builder. No sentiment analysis.</td>
+    <td>Purpose-built investing AI vs money management AI. Options chain. Strategy builder. P&L simulator. 9 indicators. Education.</td>
+  </tr>
+</table>
+
+<h3>4.2 Feature Comparison Matrix</h3>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th style="background:#F59E0B">SmartBhai AI</th>
+    <th>Zerodha</th>
+    <th>Groww</th>
+    <th>Upstox</th>
+    <th>Fyers</th>
+    <th>Dhan</th>
+    <th>Angel One</th>
+    <th>INDmoney</th>
+    <th>Multibagg</th>
+    <th>Paytm Money</th>
+  </tr>
+  <tr><td>In-App Conversational AI</td><td class="green">✅</td><td class="red">❌ MCP</td><td class="amber">🟡 Beta</td><td class="red">❌ MCP</td><td class="amber">🟡 3 products</td><td class="red">❌ Coming</td><td class="red">❌</td><td class="red">❌</td><td class="green">✅</td><td class="red">❌</td></tr>
+  <tr><td>Options Chain Simplification</td><td class="green">✅ 4 levels</td><td class="red">❌</td><td class="red">❌</td><td class="amber">🟡 Raw</td><td class="amber">🟡 FIA</td><td class="amber">🟡 Raw</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Strategy Builder (Buy+Sell)</td><td class="green">✅</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Memory System</td><td class="green">✅ Persistent</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌ Resets@10</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Adaptive Risk Profiling</td><td class="green">✅ 15 signals</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="amber">🟡 Static</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Hinglish Native</td><td class="green">✅</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Education Hub</td><td class="green">✅ 12 lessons + path</td><td class="red">❌</td><td class="red">❌</td><td class="amber">🟡</td><td class="amber">🟡</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Covered Call Guidance</td><td class="green">✅</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Risk Gate Warnings</td><td class="green">✅ Real-time</td><td class="amber">🟡 Nudge</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td></tr>
+  <tr><td>Free (No Subscription)</td><td class="green">✅ Freemium</td><td class="green">✅</td><td class="amber">🟡 Prime paid</td><td class="green">✅</td><td class="red">❌ ChatGPT+</td><td class="green">✅</td><td class="green">✅</td><td class="green">✅</td><td class="green">✅</td><td class="green">✅</td></tr>
+  <tr><td>Tier-2/3 Beginner Focus</td><td class="green">✅ Core</td><td class="red">❌</td><td class="amber">🟡</td><td class="red">❌ Dev</td><td class="red">❌ Advanced</td><td class="red">❌ Active</td><td class="red">❌</td><td class="amber">🟡</td><td class="red">❌ English</td><td class="red">❌</td></tr>
+  <tr><td>Zero Setup Required</td><td class="green">✅</td><td class="red">❌ MCP</td><td class="amber">🟡 Opt-in</td><td class="red">❌ MCP</td><td class="red">❌</td><td class="red">❌</td><td class="red">❌</td><td class="green">✅</td><td class="green">✅</td><td class="green">✅</td></tr>
+</table>
+
+<div class="highlight-green">
+  <strong>The One-Liner:</strong> "Every competitor built AI for metro power users who already know how to trade. We built AI for the 60%+ of new investors coming from Jaipur, Indore, Lucknow, and Raipur — in their language, at their level, inside the app they already use. Zero setup, zero subscription, zero jargon."
+</div>
+
+<!-- SECTION 5: FINANCIAL ECONOMICS -->
+<div class="page-break"></div>
+<h2>5. Financial Economics — Production & Running Costs</h2>
+
+<h3>5.1 Cost Per AI Query</h3>
+<p>Each conversation uses ~2,500 tokens (2K system prompt + user message + 500 token response).</p>
+
+<table>
+  <tr><th>Model</th><th>Input Cost (per 1M tokens)</th><th>Output Cost (per 1M tokens)</th><th>Cost Per Query</th><th>Cost Per Query (₹)</th></tr>
+  <tr><td>Llama 3.3 70B (API)</td><td>$0.59</td><td>$0.79</td><td>$0.0018</td><td>~₹0.15</td></tr>
+  <tr><td>GPT-4o Mini</td><td>$0.15</td><td>$0.60</td><td>$0.0006</td><td>~₹0.05</td></tr>
+  <tr><td>Gemini 2.0 Flash</td><td>$0.08</td><td>$0.30</td><td>$0.0003</td><td>~₹0.03</td></tr>
+  <tr><td>GPT-4o (premium)</td><td>$2.50</td><td>$10.00</td><td>$0.0100</td><td>~₹0.85</td></tr>
+  <tr><td>Self-hosted Llama 70B (2×H100)</td><td colspan="3">~$52,000/year fixed (₹44L/year)</td><td>₹0 marginal</td></tr>
+</table>
+
+<h3>5.2 Usage Projections</h3>
+<p>If 10% of 4.5L active users use AI daily with 3 messages each:</p>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Daily AI users (10% of active)</td><td>45,000</td></tr>
+  <tr><td>Messages per user per day</td><td>3</td></tr>
+  <tr><td>Daily queries</td><td>1,35,000</td></tr>
+  <tr><td>Monthly queries</td><td>~4 million</td></tr>
+  <tr><td>Annual queries</td><td>~48 million</td></tr>
+</table>
+
+<h3>5.3 Three Production Scenarios</h3>
+
+<h3>Scenario A: API-Based (Cheapest, Fastest Launch)</h3>
+<table>
+  <tr><th>Component</th><th>Monthly Cost</th></tr>
+  <tr><td>Llama 3.3 70B API (4M queries)</td><td>₹6,00,000</td></tr>
+  <tr><td>Vector DB (Pinecone — memory)</td><td>₹15,000</td></tr>
+  <tr><td>Redis (caching)</td><td>₹10,000</td></tr>
+  <tr><td>Backend servers (2 instances)</td><td>₹30,000</td></tr>
+  <tr><td>Monitoring + CDN</td><td>₹10,000</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>₹6.65L/month = ₹80L/year</strong></td></tr>
+</table>
+
+<h3>Scenario B: Self-Hosted (Better Control)</h3>
+<table>
+  <tr><th>Component</th><th>Monthly Cost</th></tr>
+  <tr><td>2× NVIDIA H100 (cloud rental)</td><td>₹5,00,000</td></tr>
+  <tr><td>Backend infrastructure (K8s, LB)</td><td>₹50,000</td></tr>
+  <tr><td>Vector DB (self-hosted Weaviate)</td><td>₹20,000</td></tr>
+  <tr><td>PostgreSQL + Redis</td><td>₹15,000</td></tr>
+  <tr><td>Monitoring, logging, CDN</td><td>₹10,000</td></tr>
+  <tr><td>DevOps engineer (partial)</td><td>₹1,00,000</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>₹6.95L/month = ₹83L/year</strong></td></tr>
+</table>
+<p><em>Advantage: No per-token cost. Unlimited queries. Better latency. Full data control (SEBI compliance).</em></p>
+
+<h3>Scenario C: Hybrid (Recommended for Production)</h3>
+<table>
+  <tr><th>Component</th><th>Monthly Cost</th></tr>
+  <tr><td>Self-hosted Llama 70B for Smart/Elite tiers</td><td>₹4,00,000</td></tr>
+  <tr><td>Gemini Flash API for Free tier (cheapest)</td><td>₹50,000</td></tr>
+  <tr><td>FinBERT sentiment model (lightweight)</td><td>₹10,000</td></tr>
+  <tr><td>Vector DB (Pinecone serverless)</td><td>₹15,000</td></tr>
+  <tr><td>Backend (3 Node.js + Redis + PostgreSQL)</td><td>₹60,000</td></tr>
+  <tr><td>CDN + monitoring + logging</td><td>₹15,000</td></tr>
+  <tr><td><strong>Total</strong></td><td><strong>₹5.5L/month = ₹66L/year</strong></td></tr>
+</table>
+
+<h3>5.4 Marketing & Growth Budget</h3>
+<table>
+  <tr><th>Channel</th><th>Monthly Budget</th><th>Annual Budget</th><th>Expected Impact</th></tr>
+  <tr><td><strong>Finfluencer Partnerships</strong><br><span style="font-size:10px;color:#666">CA Rachana Ranade, Pranjal Kamra, Akshat Shrivastava, Labour Law Advisor, etc.</span></td><td>₹8-12L</td><td>₹1-1.5 Cr</td><td>Reach 5-10M Tier-2/3 viewers per month. "SmartBhai AI samjhata hai Hinglish mein" — demo videos showing AI in action.</td></tr>
+  <tr><td><strong>YouTube Pre-Roll + Shorts</strong><br><span style="font-size:10px;color:#666">Target: Hindi finance channels, options trading tutorials</span></td><td>₹5-8L</td><td>₹60-96L</td><td>CPV ₹0.5-1. Target 50L-1Cr views/month on "AI explains options" creatives.</td></tr>
+  <tr><td><strong>Instagram/Reels + Twitter/X</strong><br><span style="font-size:10px;color:#666">Short-form AI demo clips, before/after comparisons</span></td><td>₹3-5L</td><td>₹36-60L</td><td>"Before AI: raw options chain. After AI: 4 key levels in Hinglish." Viral potential.</td></tr>
+  <tr><td><strong>Telegram/WhatsApp Community</strong><br><span style="font-size:10px;color:#666">Daily AI market briefing shared in trading groups</span></td><td>₹1-2L</td><td>₹12-24L</td><td>Organic growth via shareable AI insights. "Forward this to your trading group."</td></tr>
+  <tr><td><strong>App Store Optimization (ASO)</strong><br><span style="font-size:10px;color:#666">Keywords: "AI trading app India", "options explained Hindi"</span></td><td>₹50K</td><td>₹6L</td><td>Improve Play Store ranking. AI as differentiator in app description.</td></tr>
+  <tr><td><strong>Referral Program</strong><br><span style="font-size:10px;color:#666">"Invite a friend → both get 1 week AI Pro free"</span></td><td>₹2-3L</td><td>₹24-36L</td><td>Viral loop. Each referral costs ~₹50-100 vs ₹200-500 CAC for paid ads.</td></tr>
+  <tr><td><strong>PR & Media Coverage</strong><br><span style="font-size:10px;color:#666">"First Hinglish-native AI trading assistant in India" — ET, Moneycontrol, Mint</span></td><td>₹1-2L</td><td>₹12-24L</td><td>Credibility + organic reach. Position as an AI-first assistant for Indian retail.</td></tr>
+  <tr style="background:#f3e8ff"><td><strong>TOTAL MARKETING</strong></td><td><strong>₹20-32L/month</strong></td><td><strong>₹2.5-4 Cr/year</strong></td><td></td></tr>
+</table>
+
+<div class="highlight">
+  <strong>Marketing ROI Logic:</strong> Current CAC for discount broker CAC is estimated at ₹200-500 per new client (industry average for discount brokers). AI as a differentiator in marketing creatives ("SmartBhai fills the AI gap discount brokers are missing") can reduce CAC by 20-30% while increasing conversion. The finfluencer channel is particularly powerful for Tier-2/3 — these audiences trust Hindi-speaking finance creators more than brand ads.
+</div>
+
+<h3>5.5 Total Cost Summary (Including Marketing)</h3>
+<table>
+  <tr><th>Phase</th><th>Duration</th><th>Cost</th></tr>
+  <tr><td>Build phase (team + infra setup)</td><td>6 months</td><td>₹55-60 Lakhs</td></tr>
+  <tr><td>Year 1 running (infra)</td><td>12 months</td><td>₹66-80 Lakhs</td></tr>
+  <tr><td>Year 1 marketing (launch + growth)</td><td>12 months</td><td>₹2.5-4 Crore</td></tr>
+  <tr style="background:#f3e8ff"><td><strong>Total Year 1 all-in (build + infra + marketing)</strong></td><td></td><td><strong>₹3.8-5 Crore</strong></td></tr>
+  <tr><td>Year 2+ running (infra optimized)</td><td>12 months</td><td>₹66 Lakhs</td></tr>
+  <tr><td>Year 2+ marketing (steady state)</td><td>12 months</td><td>₹1.5-2.5 Crore</td></tr>
+  <tr style="background:#f3e8ff"><td><strong>Ongoing annual (Year 2+)</strong></td><td></td><td><strong>₹2.2-3.2 Crore/year</strong></td></tr>
+</table>
+
+<!-- SECTION 6: REVENUE IMPACT -->
+<div class="page-break"></div>
+<h2>6. Revenue Impact — How AI Pays for Itself</h2>
+
+<div class="highlight-amber">
+  <strong>Important Base Assumptions:</strong> a reference broker has 50.8L registered users but only ~4.15L monthly active traders (NSE data, Apr 2025). Revenue projections are grounded in active users. AI itself becomes a reactivation engine — pulling dormant users back. We model three layers separately. Brokerage: blended ₹35/trade for active users (75% standard ₹40 + 25% pack subscribers ₹20), standard ₹40/trade for reactivated dormant users.
+</div>
+
+<h3>6.1 User Funnel</h3>
+<table>
+  <tr><th>Segment</th><th>Count</th><th>% of Total</th><th>AI Role</th></tr>
+  <tr><td>Total Registered</td><td>50.8L</td><td>100%</td><td>—</td></tr>
+  <tr><td>Monthly Active Traders</td><td>~4.15L</td><td>8.2%</td><td>Core AI audience — increase their trading volume & F&O participation</td></tr>
+  <tr><td>Dormant (registered but inactive)</td><td>~46.6L</td><td>91.8%</td><td>AI reactivation target — daily notifications, AI briefings pull them back</td></tr>
+  <tr><td>New Clients/Quarter</td><td>~78K (slowing from 1.11L in Q3 FY25)</td><td>—</td><td>AI as acquisition hook — "SmartBhai has AI others don't"</td></tr>
+</table>
+
+<h3>6.2 Revenue from Active Users (4.15L base)</h3>
+<p style="font-size:11px;color:#666;margin-bottom:8px"><em>Note: Each "trade" = 1 buy order + 1 sell order. Standard users pay ₹20+₹20 = ₹40/trade. Pack subscribers (Power Investor/Ultra Trader) pay ₹10+₹10 = ₹20/trade. We use a blended rate of ₹35/trade assuming ~25% of active traders are on a pack.</em></p>
+<table>
+  <tr><th>Revenue Driver</th><th>Conservative</th><th>Moderate</th><th>Aggressive</th></tr>
+  <tr>
+    <td><strong>Extra Trades from AI Users</strong><br><span style="font-size:11px;color:#666">AI-engaged active users do 5 extra round-trip trades/month.<br>Adoption: % of 4.15L active users who engage with AI.</span></td>
+    <td>20% adopt = 83K users<br>83K × 5 × ₹35 × 12<br><strong class="green">= ₹17.4 Cr/year</strong></td>
+    <td>35% = 1.45L users<br>1.45L × 5 × ₹35 × 12<br><strong class="green">= ₹30.5 Cr/year</strong></td>
+    <td>50% = 2.08L users<br>2.08L × 5 × ₹35 × 12<br><strong class="green">= ₹43.7 Cr/year</strong></td>
+  </tr>
+  <tr>
+    <td><strong>New F&O Traders</strong><br><span style="font-size:11px;color:#666">Active equity-only users convert to F&O<br>because AI simplifies options. 10 F&O round-trip trades/month.</span></td>
+    <td>3% of active = 12.5K<br>12.5K × 10 × ₹35 × 12<br><strong class="green">= ₹5.25 Cr/year</strong></td>
+    <td>6% = 24.9K<br>24.9K × 10 × ₹35 × 12<br><strong class="green">= ₹10.5 Cr/year</strong></td>
+    <td>10% = 41.5K<br>41.5K × 10 × ₹35 × 12<br><strong class="green">= ₹17.4 Cr/year</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Deposit Incentive (Active Users)</strong><br><span style="font-size:11px;color:#666">Active users deposit ₹50K to unlock AI Pro.<br>the broker earns float income (~6% on deposits).</span></td>
+    <td>10% of active = 41.5K<br>41.5K × ₹50K = ₹208 Cr AUM<br>Float @ 6%: <strong class="green">₹12.5 Cr/year</strong></td>
+    <td>20% = 83K<br>₹415 Cr AUM<br><strong class="green">₹24.9 Cr/year</strong></td>
+    <td>30% = 1.25L<br>₹623 Cr AUM<br><strong class="green">₹37.4 Cr/year</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Pack Upsell</strong><br><span style="font-size:11px;color:#666">Power Investor Pack ₹399/mo from active users</span></td>
+    <td>5% of active = 20.8K<br>20.8K × ₹399 × 12<br><strong class="green">= ₹9.9 Cr/year</strong></td>
+    <td>10% = 41.5K<br><strong class="green">= ₹19.9 Cr/year</strong></td>
+    <td>15% = 62.3K<br><strong class="green">= ₹29.8 Cr/year</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Reduced Churn</strong><br><span style="font-size:11px;color:#666">Memory + profile = switching cost.<br>Avg revenue per active user: ~₹824/year (₹342Cr ÷ 4.15L)</span></td>
+    <td>5% less churn = 20.8K retained<br>20.8K × ₹824<br><strong class="green">= ₹1.7 Cr/year</strong></td>
+    <td>10% = 41.5K<br><strong class="green">= ₹3.4 Cr/year</strong></td>
+    <td>15% = 62.3K<br><strong class="green">= ₹5.1 Cr/year</strong></td>
+  </tr>
+  <tr style="background:#d1fae5">
+    <td><strong>SUBTOTAL — Active Users</strong></td>
+    <td><strong>₹46.8 Cr/year</strong></td>
+    <td><strong>₹89.2 Cr/year</strong></td>
+    <td><strong>₹133.4 Cr/year</strong></td>
+  </tr>
+</table>
+
+<h3>6.3 Revenue from Reactivated Dormant Users (46.65L base)</h3>
+<table>
+  <tr><th>Revenue Driver</th><th>Conservative</th><th>Moderate</th><th>Aggressive</th></tr>
+  <tr>
+    <td><strong>Dormant User Reactivation</strong><br><span style="font-size:11px;color:#666">AI daily notifications + briefings pull dormant users back.<br>"SmartBhai AI made ₹2.4 Cr for traders today" → FOMO.<br>Reactivated users do avg 8 round-trip trades/month.<br>Standard ₹40/trade (new reactivations unlikely on packs).</span></td>
+    <td>1% of 46L = 46K reactivated<br>46K × 8 × ₹40 × 12<br><strong class="green">= ₹17.7 Cr/year</strong></td>
+    <td>3% = 1.38L<br>1.38L × 8 × ₹40 × 12<br><strong class="green">= ₹53 Cr/year</strong></td>
+    <td>5% = 2.3L<br>2.3L × 8 × ₹40 × 12<br><strong class="green">= ₹88.3 Cr/year</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Deposits from Reactivated Users</strong><br><span style="font-size:11px;color:#666">Reactivated users deposit ₹25K avg (lower than active).<br>Float income @ 6%.</span></td>
+    <td>46K × ₹25K = ₹115 Cr AUM<br><strong class="green">₹6.9 Cr/year</strong></td>
+    <td>1.38L × ₹25K = ₹345 Cr<br><strong class="green">₹20.7 Cr/year</strong></td>
+    <td>2.3L × ₹25K = ₹575 Cr<br><strong class="green">₹34.5 Cr/year</strong></td>
+  </tr>
+  <tr style="background:#d1fae5">
+    <td><strong>SUBTOTAL — Reactivated Users</strong></td>
+    <td><strong>₹24.6 Cr/year</strong></td>
+    <td><strong>₹73.7 Cr/year</strong></td>
+    <td><strong>₹122.8 Cr/year</strong></td>
+  </tr>
+</table>
+
+<h3>6.4 Revenue from New User Acquisition</h3>
+<table>
+  <tr><th>Revenue Driver</th><th>Conservative</th><th>Moderate</th><th>Aggressive</th></tr>
+  <tr>
+    <td><strong>AI as Acquisition Hook</strong><br><span style="font-size:11px;color:#666">Current: 78K new clients/quarter = 3.12L/year.<br>AI differentiator increases acquisition rate.<br>New users do avg 5 round-trip trades/month in first year.<br>Blended ₹35/trade (first 30 days free, then standard).</span></td>
+    <td>10% more = 31.2K extra/year<br>31.2K × 5 × ₹35 × 12<br><strong class="green">= ₹6.6 Cr/year</strong></td>
+    <td>20% more = 62.4K<br>62.4K × 5 × ₹35 × 12<br><strong class="green">= ₹13.1 Cr/year</strong></td>
+    <td>30% more = 93.6K<br>93.6K × 5 × ₹35 × 12<br><strong class="green">= ₹19.7 Cr/year</strong></td>
+  </tr>
+  <tr style="background:#d1fae5">
+    <td><strong>SUBTOTAL — New Acquisition</strong></td>
+    <td><strong>₹6.6 Cr/year</strong></td>
+    <td><strong>₹13.1 Cr/year</strong></td>
+    <td><strong>₹19.7 Cr/year</strong></td>
+  </tr>
+</table>
+
+<h3>6.5 Total Revenue Impact — All Three Layers</h3>
+<table>
+  <tr><th>Layer</th><th>Conservative</th><th>Moderate</th><th>Aggressive</th></tr>
+  <tr><td>Active Users (4.15L)</td><td>₹46.8 Cr</td><td>₹89.2 Cr</td><td>₹133.4 Cr</td></tr>
+  <tr><td>Reactivated Dormant (from 46.65L)</td><td>₹24.6 Cr</td><td>₹73.7 Cr</td><td>₹122.8 Cr</td></tr>
+  <tr><td>New Acquisition Uplift</td><td>₹6.6 Cr</td><td>₹13.1 Cr</td><td>₹19.7 Cr</td></tr>
+  <tr style="background:#d1fae5;font-size:15px">
+    <td><strong>TOTAL ANNUAL REVENUE IMPACT</strong></td>
+    <td><strong class="green">₹78 Cr/year</strong></td>
+    <td><strong class="green">₹176 Cr/year</strong></td>
+    <td><strong class="green">₹275.9 Cr/year</strong></td>
+  </tr>
+  <tr style="background:#f3e8ff">
+    <td><strong>As % of current revenue (₹342 Cr)</strong></td>
+    <td><strong class="purple">+22.8%</strong></td>
+    <td><strong class="purple">+51.5%</strong></td>
+    <td><strong class="purple">+80.7%</strong></td>
+  </tr>
+</table>
+
+<h3>6.6 ROI Calculation</h3>
+<table>
+  <tr><th>Metric</th><th>Conservative</th><th>Moderate</th><th>Aggressive</th></tr>
+  <tr><td>Year 1 Cost (build + infra + marketing)</td><td>₹5 Cr</td><td>₹5 Cr</td><td>₹5 Cr</td></tr>
+  <tr><td>Year 1 Revenue Impact</td><td>₹78 Cr</td><td>₹176 Cr</td><td>₹275.9 Cr</td></tr>
+  <tr style="background:#d1fae5"><td><strong>Year 1 ROI</strong></td><td><strong class="green">15.6x</strong></td><td><strong class="green">35.2x</strong></td><td><strong class="green">55.2x</strong></td></tr>
+  <tr><td>Year 2+ Cost (infra + marketing)</td><td>₹3.2 Cr</td><td>₹3.2 Cr</td><td>₹3.2 Cr</td></tr>
+  <tr style="background:#d1fae5"><td><strong>Year 2+ ROI</strong></td><td><strong class="green">24.4x</strong></td><td><strong class="green">55x</strong></td><td><strong class="green">86.2x</strong></td></tr>
+</table>
+
+<div class="highlight-green">
+  <strong>The Economics Argument:</strong> "Including ₹2.5-4 Cr marketing spend (finfluencers, YouTube, social), total Year 1 investment is ~₹5 Cr. Conservative revenue impact: ₹78 Cr/year — a 15.6x ROI even with full marketing costs. At moderate adoption, AI adds ₹176 Cr — a 51.5% revenue increase on a ₹342 Cr base. The marketing spend itself has compounding returns: every finfluencer video showing 'SmartBhai AI explains options in Hinglish' is a permanent asset that keeps driving downloads."
+</div>
+
+<div class="highlight">
+  <strong>Why Dormant Reactivation Works:</strong> 46L users already have demat accounts, KYC done, app installed. The friction to reactivate is near-zero — just a compelling notification. "SmartBhai AI traders made ₹2.4 Cr today. Your portfolio is up ₹1,240. Tap to see what AI suggests →" This is the cheapest customer acquisition possible — they're already your customers.
+</div>
+<!-- SECTION 7: PRODUCTION ROADMAP -->
+<h2>7. Production Roadmap</h2>
+
+<table>
+  <tr><th>Phase</th><th>Timeline</th><th>Deliverables</th></tr>
+  <tr><td><strong>Phase 1: MVP</strong></td><td>Month 1-2</td><td>In-app AI chat with RAG pipeline, portfolio-aware responses, basic memory, Hinglish support. API-based (Llama 70B via OpenRouter).</td></tr>
+  <tr><td><strong>Phase 2: Intelligence</strong></td><td>Month 3-4</td><td>Adaptive profiling, risk gate system, SEBI compliance layer, options strategy builder, P&L simulator, 9 market indicators.</td></tr>
+  <tr><td><strong>Phase 3: Monetization</strong></td><td>Month 4-5</td><td>Freemium tier system, daily notifications, upgrade nudges, covered call suggestions, earnings simulator.</td></tr>
+  <tr><td><strong>Phase 4: Scale</strong></td><td>Month 5-6</td><td>Self-hosted LLM, vector DB for memory, FinBERT sentiment, knowledge graph, onboarding flow, multi-leg strategy visuals.</td></tr>
+  <tr><td><strong>Phase 5: Advanced</strong></td><td>Month 7-12</td><td>RLHF training, XGBoost risk scoring, real-time market data, push notifications, PDF export, voice input.</td></tr>
+</table>
+
+<!-- SECTION 8: KEY NUMBERS -->
+<h2>8. Key Numbers to Remember</h2>
+
+<div class="stat-grid">
+  <div class="stat-box"><div class="stat-num">20 Cr+</div><div class="stat-label">Top-5 Discount Broker Users</div></div>
+  <div class="stat-box"><div class="stat-num">₹8K Cr</div><div class="stat-label">Broking Revenue Pool (FY25)</div></div>
+  <div class="stat-box"><div class="stat-num">₹5 Cr</div><div class="stat-label">Year 1 Total Investment</div></div>
+  <div class="stat-box"><div class="stat-num">₹78 Cr</div><div class="stat-label">Conservative Revenue Impact</div></div>
+  <div class="stat-box"><div class="stat-num">15.6x</div><div class="stat-label">Conservative Year 1 ROI</div></div>
+  <div class="stat-box"><div class="stat-num">₹0.15</div><div class="stat-label">Cost Per AI Query</div></div>
+  <div class="stat-box"><div class="stat-num">9</div><div class="stat-label">Market Indicators</div></div>
+  <div class="stat-box"><div class="stat-num">6</div><div class="stat-label">AI Model Fallback Chain</div></div>
+  <div class="stat-box"><div class="stat-num">15</div><div class="stat-label">Profile Signal Types</div></div>
+  <div class="stat-box"><div class="stat-num">35+</div><div class="stat-label">Scenario Questions</div></div>
+  <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">Competitors with Hinglish AI</div></div>
+  <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">Competitors with Memory</div></div>
+</div>
+
+<div class="footer">
+  <p>SmartBhai AI — Business Requirements Document | April 2026</p>
+  <p>To open in Word: File → Open → Select this .html file | To print: Ctrl+P / Cmd+P</p>
+</div>
+
+</body>
+</html>

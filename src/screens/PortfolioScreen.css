@@ -1,0 +1,425 @@
+.portfolio-screen {
+  padding: 16px;
+}
+
+.screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.screen-header h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.ai-analyze-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ai-analyze-btn:hover {
+  transform: scale(1.03);
+}
+
+/* Value Card */
+.port-value-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.port-value-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.port-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.port-value {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.port-pnl-box {
+  text-align: right;
+}
+
+.port-pnl {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.port-pnl.positive { color: var(--success); }
+.port-pnl.negative { color: var(--danger); }
+
+.port-mini-chart {
+  margin: 8px -8px;
+}
+
+.ai-risk-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--warning);
+  background: rgba(245, 158, 11, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ai-risk-badge:hover {
+  background: rgba(245, 158, 11, 0.2);
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.view-toggle button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-toggle button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Holdings */
+.holdings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.holding-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  opacity: 0;
+}
+
+.holding-symbol {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.holding-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.holding-sector {
+  background: rgba(108, 43, 217, 0.15);
+  color: var(--primary-light);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.holding-right {
+  text-align: right;
+}
+
+.holding-ltp {
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.holding-pnl {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.holding-pnl.positive { color: var(--success); }
+.holding-pnl.negative { color: var(--danger); }
+
+.holding-today {
+  font-size: 10px;
+  font-weight: 500;
+  display: block;
+  margin-top: 2px;
+}
+
+.holding-today.positive { color: var(--success); }
+.holding-today.negative { color: var(--danger); }
+
+/* Technical Indicators on Holdings */
+.holding-technicals {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.tech-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+.tech-badge.rsi-normal { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+.tech-badge.rsi-overbought { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.tech-badge.rsi-oversold { background: rgba(59, 130, 246, 0.15); color: #60A5FA; }
+
+.tech-badge.macd-bullish { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+.tech-badge.macd-bearish { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+.tech-badge.macd-neutral { background: rgba(245, 158, 11, 0.15); color: var(--accent); }
+
+.tech-badge.above-dma { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+.tech-badge.below-dma { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+.holding-card {
+  cursor: pointer;
+}
+
+/* Sector View */
+.sector-chart {
+  margin-bottom: 16px;
+}
+
+.sector-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sector-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sector-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.sector-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.sector-pct {
+  font-size: 13px;
+  font-weight: 700;
+  width: 40px;
+  text-align: right;
+}
+
+.sector-amt {
+  font-size: 12px;
+  color: var(--text-muted);
+  width: 80px;
+  text-align: right;
+}
+
+.ai-diversify-tip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--primary-light);
+  background: rgba(108, 43, 217, 0.1);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ai-diversify-tip:hover {
+  background: rgba(108, 43, 217, 0.2);
+}
+
+
+/* What-If Simulator */
+.whatif-view {
+  padding-top: 4px;
+}
+
+.whatif-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.whatif-scenarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.whatif-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.whatif-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.whatif-btn:hover:not(.active) {
+  background: var(--bg-card-hover);
+}
+
+.whatif-results {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.whatif-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.whatif-total span {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.whatif-total strong {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.whatif-total.positive strong { color: var(--success); }
+.whatif-total.negative strong { color: var(--danger); }
+
+.whatif-stocks {
+  padding: 8px 16px;
+}
+
+.whatif-stock-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(42, 42, 74, 0.3);
+}
+
+.whatif-stock-row:last-child {
+  border-bottom: none;
+}
+
+.whatif-symbol {
+  font-size: 12px;
+  font-weight: 700;
+  width: 100px;
+}
+
+.whatif-sector {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.whatif-impact {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.whatif-impact.positive { color: var(--success); }
+.whatif-impact.negative { color: var(--danger); }
+
+.whatif-ask-ai {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 12px;
+  background: rgba(108, 43, 217, 0.1);
+  border: none;
+  border-top: 1px solid var(--border);
+  color: var(--primary-light);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.whatif-ask-ai:hover {
+  background: rgba(108, 43, 217, 0.2);
+}
+
+.whatif-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+}

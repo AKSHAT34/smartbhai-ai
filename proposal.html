@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartBhai AI — Interactive Proposal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#6C2BD9;--primary-light:#8B5CF6;--accent:#F59E0B;--success:#10B981;--danger:#EF4444;--bg:#0a0a1a;--card:#12122a;--card2:#1a1a35;--border:#2a2a4a;--text:#e0e0f0;--muted:#7a7a9a;--glow:rgba(108,43,217,0.3)}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
+/* 3D Animated Background */
+.bg-canvas{position:fixed;inset:0;z-index:0;overflow:hidden}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.15;animation:float 20s infinite ease-in-out}
+.bg-orb:nth-child(1){width:600px;height:600px;background:var(--primary);top:-10%;left:-10%;animation-delay:0s}
+.bg-orb:nth-child(2){width:500px;height:500px;background:var(--accent);bottom:-10%;right:-10%;animation-delay:-7s}
+.bg-orb:nth-child(3){width:400px;height:400px;background:#3B82F6;top:40%;left:50%;animation-delay:-14s}
+.bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(108,43,217,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(108,43,217,0.03) 1px,transparent 1px);background-size:60px 60px;transform:perspective(500px) rotateX(60deg);transform-origin:center top;opacity:0.5}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(50px,-30px) scale(1.1)}50%{transform:translate(-20px,40px) scale(0.95)}75%{transform:translate(30px,20px) scale(1.05)}}
+/* Layout */
+.app{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:20px}
+/* Header Nav */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(18,18,42,0.8);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;margin-bottom:30px;position:sticky;top:10px;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff}
+.nav-tabs{display:flex;gap:4px;background:var(--card);border-radius:12px;padding:4px}
+.nav-tab{padding:8px 18px;border-radius:10px;border:none;background:none;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;font-family:inherit;white-space:nowrap}
+.nav-tab.active{background:var(--primary);color:#fff;box-shadow:0 4px 15px rgba(108,43,217,0.4)}
+.nav-tab:hover:not(.active){color:var(--text);background:rgba(108,43,217,0.1)}
+</style>
+</head>
+<body>
+<div class="bg-canvas">
+  <div class="bg-orb"></div><div class="bg-orb"></div><div class="bg-orb"></div>
+  <div class="bg-grid"></div>
+</div>
+<div class="app">
+  <nav class="top-bar">
+    <div class="logo"><div class="logo-icon">SB</div> SmartBhai AI Proposal</div>
+    <div class="nav-tabs" id="navTabs">
+      <button class="nav-tab active" data-tab="overview">Overview</button>
+      <button class="nav-tab" data-tab="why">WHY</button>
+      <button class="nav-tab" data-tab="competitors">Competitors</button>
+      <button class="nav-tab" data-tab="optionsai">Options AI</button>
+      <button class="nav-tab" data-tab="what">WHAT</button>
+      <button class="nav-tab" data-tab="how">HOW</button>
+      <button class="nav-tab" data-tab="answers">Key Answers</button>
+      <button class="nav-tab" data-tab="personas">Personas</button>
+      <button class="nav-tab" data-tab="aitech">AI Tech</button>
+      <button class="nav-tab" data-tab="prototype">Prototype</button>
+    </div>
+  </nav>
+  <main id="content"></main>
+</div>
+<script>
+// ============ TAB CONTENT DATA ============
+</script>
+</body>
+</html>
+<!-- Additional Styles -->
+<style>
+/* Sections */
+.tab-content{display:none;animation:fadeUp 0.5s ease-out}
+.tab-content.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+/* Hero */
+.hero{text-align:center;padding:60px 20px 40px}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;background:linear-gradient(135deg,#fff,var(--primary-light),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin-bottom:16px}
+.hero p{font-size:18px;color:var(--muted);max-width:700px;margin:0 auto 30px;line-height:1.6}
+.hero-stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.hero-stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 28px;min-width:160px;transition:transform 0.3s,box-shadow 0.3s}
+.hero-stat:hover{transform:translateY(-5px) scale(1.03);box-shadow:0 10px 40px var(--glow)}
+.hero-stat .num{font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--primary-light),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat .label{font-size:12px;color:var(--muted);margin-top:4px}
+/* Section Headers */
+.section{margin-bottom:40px}
+.section-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(108,43,217,0.15);border:1px solid rgba(108,43,217,0.3);color:var(--primary-light);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.section h2{font-size:28px;font-weight:800;margin-bottom:8px}
+.section .subtitle{color:var(--muted);font-size:15px;margin-bottom:24px;line-height:1.5}
+/* Cards Grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:all 0.3s;cursor:default;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:opacity 0.3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3);border-color:var(--primary)}
+.card:hover::before{opacity:1}
+.card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.card p{font-size:13px;color:var(--muted);line-height:1.6}
+.card-tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;margin-top:10px;text-transform:uppercase;letter-spacing:0.5px}
+/* Flowchart Boxes */
+.flow-container{display:flex;flex-direction:column;align-items:center;gap:0;margin:30px 0}
+.flow-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 28px;text-align:center;max-width:500px;width:100%;transition:all 0.3s;position:relative}
+.flow-box:hover{border-color:var(--primary);box-shadow:0 0 30px var(--glow);transform:scale(1.02)}
+.flow-box h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.flow-box p{font-size:12px;color:var(--muted)}
+.flow-arrow{width:2px;height:30px;background:linear-gradient(180deg,var(--primary),transparent);position:relative}
+.flow-arrow::after{content:'▼';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);color:var(--primary);font-size:10px}
+/* Comparison Table */
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:20px 0}
+.compare-table th{background:var(--card2);padding:14px 18px;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border)}
+.compare-table td{padding:14px 18px;font-size:13px;border-bottom:1px solid rgba(42,42,74,0.5);transition:background 0.2s}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:hover td{background:rgba(108,43,217,0.05)}
+/* Progress Bars */
+.progress-item{margin-bottom:16px}
+.progress-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.progress-label span:first-child{font-weight:600}
+.progress-label span:last-child{color:var(--muted)}
+.progress-bar{height:8px;background:var(--card2);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;border-radius:4px;transition:width 1.5s ease-out;width:0}
+/* Persona Cards */
+.persona-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:all 0.3s;cursor:pointer}
+.persona-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.persona-card.expanded .persona-details{max-height:300px;opacity:1;margin-top:14px}
+.persona-emoji{font-size:36px;margin-bottom:10px}
+.persona-name{font-size:16px;font-weight:700}
+.persona-who{font-size:12px;color:var(--muted);margin-top:4px}
+.persona-profile{display:inline-block;font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;margin-top:8px}
+.persona-details{max-height:0;opacity:0;overflow:hidden;transition:all 0.4s ease-out}
+.persona-details p{font-size:13px;color:var(--muted);line-height:1.6;margin-top:6px}
+/* Indicator Cards */
+.indicator-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;cursor:pointer;transition:all 0.3s}
+.indicator-card:hover{border-color:var(--primary);box-shadow:0 0 20px var(--glow)}
+.indicator-card.expanded .indicator-body{max-height:200px;opacity:1;margin-top:12px}
+.indicator-header{display:flex;justify-content:space-between;align-items:center}
+.indicator-header h4{font-size:14px;font-weight:700}
+.indicator-signal{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px}
+.indicator-body{max-height:0;opacity:0;overflow:hidden;transition:all 0.4s}
+.indicator-body p{font-size:13px;color:var(--muted);line-height:1.6}
+.indicator-body .analogy{font-style:italic;color:var(--accent);margin-top:6px}
+/* Accent colors */
+.bg-purple{background:rgba(108,43,217,0.15)}
+.bg-amber{background:rgba(245,158,11,0.15)}
+.bg-green{background:rgba(16,185,129,0.15)}
+.bg-red{background:rgba(239,68,68,0.15)}
+.bg-blue{background:rgba(59,130,246,0.15)}
+.text-purple{color:var(--primary-light)}
+.text-amber{color:var(--accent)}
+.text-green{color:var(--success)}
+.text-red{color:var(--danger)}
+.text-blue{color:#60A5FA}
+.tag-green{background:rgba(16,185,129,0.15);color:var(--success)}
+.tag-amber{background:rgba(245,158,11,0.15);color:var(--accent)}
+.tag-red{background:rgba(239,68,68,0.15);color:var(--danger)}
+.tag-purple{background:rgba(108,43,217,0.15);color:var(--primary-light)}
+/* Architecture Diagram */
+.arch-layer{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;transition:all 0.3s}
+.arch-layer:hover{border-color:var(--primary);box-shadow:0 0 25px var(--glow)}
+.arch-layer-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.arch-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.arch-item{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;transition:all 0.3s}
+.arch-item:hover{background:rgba(108,43,217,0.1);border-color:var(--primary)}
+.arch-item .ai{font-size:20px;margin-bottom:6px}
+.arch-item h5{font-size:12px;font-weight:700;margin-bottom:4px}
+.arch-item p{font-size:10px;color:var(--muted);line-height:1.4}
+.arch-arrow{text-align:center;font-size:20px;color:var(--primary);margin:8px 0;opacity:0.5}
+/* Responsive */
+@media(max-width:768px){.nav-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch}.nav-tab{font-size:12px;padding:7px 12px}.hero h1{font-size:28px}.hero-stats{gap:10px}.hero-stat{min-width:120px;padding:14px 18px}.hero-stat .num{font-size:22px}.cards-grid{grid-template-columns:1fr}.top-bar{flex-direction:column;gap:12px;position:relative;top:0}}
+/* Scroll animations */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.6s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+<script>
+const tabs = {
+overview: `
+<div class="hero">
+  <div class="section-badge">🚀 Product Manager Assignment</div>
+  <h1>SmartBhai AI — Trading Assistant for Bharat</h1>
+  <p>Helping Tier-2 &amp; Tier-3 retail investors invest and trade with greater confidence through AI-powered insights, education, and conversational guidance.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">21.6 Cr</div><div class="label">Demat Accounts (Dec 2025)</div></div>
+    <div class="hero-stat"><div class="num">60%+</div><div class="label">From Tier-2/3 Cities</div></div>
+    <div class="hero-stat"><div class="num">91%</div><div class="label">Retail F&amp;O Traders Lose</div></div>
+    <div class="hero-stat"><div class="num">₹1.06L Cr</div><div class="label">Net Retail F&amp;O Loss (FY25)</div></div>
+    <div class="hero-stat"><div class="num">18.75%</div><div class="label">Retail NSE Ownership (22yr high)</div></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">🏗️ System Architecture</div>
+  <h2>How It All Connects</h2>
+  <p class="subtitle">Three intelligence layers power every interaction — context, memory, and adaptive profiling.</p>
+  <div class="arch-layer">
+    <div class="arch-layer-title"><span style="color:var(--accent)">⬤</span> Layer 1: Intelligence Engine</div>
+    <div class="arch-items">
+      <div class="arch-item"><div class="ai">🧠</div><h5>Memory System</h5><p>Remembers past chats, goals, preferences across sessions</p></div>
+      <div class="arch-item"><div class="ai">👤</div><h5>Investor Profiler</h5><p>Safe / Moderate / Risky — adapts based on behavior</p></div>
+      <div class="arch-item"><div class="ai">📉</div><h5>Sentiment Engine</h5><p>VIX + PCR + FII/DII + RSI + MACD + Bollinger</p></div>
+    </div>
+  </div>
+  <div class="arch-arrow">▼</div>
+  <div class="arch-layer">
+    <div class="arch-layer-title"><span style="color:var(--primary-light)">⬤</span> Layer 2: AI Features</div>
+    <div class="arch-items">
+      <div class="arch-item"><div class="ai">📊</div><h5>Portfolio Analyzer</h5><p>Health score, sector risk, P&amp;L trends</p></div>
+      <div class="arch-item"><div class="ai">📈</div><h5>Options Simplifier</h5><p>Key levels, PCR color coding, Max Pain</p></div>
+      <div class="arch-item"><div class="ai">🎯</div><h5>Strategy Builder</h5><p>Bull/Bear/Neutral/Hedge with exact P&amp;L</p></div>
+      <div class="arch-item"><div class="ai">💰</div><h5>P&amp;L Simulator</h5><p>What-if scenarios with ₹ amounts</p></div>
+      <div class="arch-item"><div class="ai">📉</div><h5>Market Sentiment</h5><p>Overall mood + indicator breakdown</p></div>
+      <div class="arch-item"><div class="ai">🔧</div><h5>Technical Analysis</h5><p>RSI, MACD, MAs explained simply</p></div>
+      <div class="arch-item"><div class="ai">⚠️</div><h5>Risk Warnings</h5><p>Pre-trade alerts, concentration risk</p></div>
+      <div class="arch-item"><div class="ai">📚</div><h5>AI Tutor</h5><p>Micro-lessons, glossary, streaks</p></div>
+    </div>
+  </div>
+  <div class="arch-arrow">▼</div>
+  <div class="arch-layer">
+    <div class="arch-layer-title"><span style="color:var(--success)">⬤</span> Layer 3: Interaction Surfaces</div>
+    <div class="arch-items">
+      <div class="arch-item"><div class="ai">🏠</div><h5>Home Screen</h5><p>Insight cards + nudges + quick actions</p></div>
+      <div class="arch-item"><div class="ai">💬</div><h5>AI Chat</h5><p>Conversational AI with memory + profile</p></div>
+      <div class="arch-item"><div class="ai">💼</div><h5>Portfolio Screen</h5><p>Risk badge + charts + AI analysis</p></div>
+      <div class="arch-item"><div class="ai">📊</div><h5>Options Screen</h5><p>Key levels + strategy builder + P&amp;L sim</p></div>
+    </div>
+  </div>
+</div>`,
+
+why: `
+<div class="section reveal">
+  <div class="section-badge">❓ Question 1</div>
+  <h2>Why Does Bharat Need an AI Trading Assistant?</h2>
+  <p class="subtitle">India's retail investor base has exploded 6x since 2019, but 91% of F&amp;O traders still lose money. The gap between data availability and user understanding is massive.</p>
+  <div class="cards-grid">
+    <div class="card"><div class="card-icon bg-red">📱</div><h3>Information Overload</h3><p>New investors see raw charts, ratios, and jargon. They don't know what matters for THEIR portfolio. AI summarizes and prioritizes.</p><div class="card-tag tag-red">70% less time to understand</div></div>
+    <div class="card"><div class="card-icon bg-amber">📊</div><h3>Options Complexity</h3><p>OI, IV, PCR, Greeks — incomprehensible to non-experts. AI extracts 4 key levels and explains in plain language.</p><div class="card-tag tag-amber">Unlocks F&amp;O for millions</div></div>
+    <div class="card"><div class="card-icon bg-purple">🎯</div><h3>No Personalized Guidance</h3><p>Generic tips don't account for individual holdings. AI knows your actual portfolio and gives specific answers.</p><div class="card-tag tag-purple">Every answer is personal</div></div>
+    <div class="card"><div class="card-icon bg-blue">🗣️</div><h3>Language Barrier</h3><p>Tier-2/3 users think in Hindi. Most financial content is English-only. AI responds in Hinglish with analogies.</p><div class="card-tag tag-green">3x engagement from Tier-2/3</div></div>
+    <div class="card"><div class="card-icon bg-green">😰</div><h3>Decision Paralysis</h3><p>Too many choices, no framework. Strategy Builder + P&amp;L Simulator give exact numbers for confident decisions.</p><div class="card-tag tag-green">Confident decision-making</div></div>
+    <div class="card"><div class="card-icon bg-red">🔴</div><h3>Risk Blindness</h3><p>Investors don't understand their actual risk exposure. Adaptive profiling + proactive alerts prevent losses before they happen.</p><div class="card-tag tag-red">Prevents losses proactively</div></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">🏢 Competitive Pressure</div>
+  <h2>Every Major Broker Is Adding AI</h2>
+  <p class="subtitle">Upstox, Fyers, Dhan, INDmoney, Multibagg — all integrating AI. See the full deep-dive in the <strong style="color:var(--accent);cursor:pointer" onclick="document.querySelector('[data-tab=competitors]').click()">Competitors tab →</strong></p>
+</div>`,
+
+competitors: `
+<div class="section reveal">
+  <div class="section-badge">🔍 Competitive Deep-Dive</div>
+  <h2>Competitor AI Analysis — What Works, What Doesn't, and Where SmartBhai Wins</h2>
+  <p class="subtitle">Based on research across product pages, user reviews, Reddit, Quora, TradingView reviews, Play Store feedback, and community forums.</p>
+</div>
+
+<!-- UPSTOX -->
+<div class="section reveal">
+  <h2 style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🟣</span> Upstox</h2>
+  <p class="subtitle">1.3 Cr+ users · Backed by Tiger Global &amp; Ratan Tata · TrustScore: 1.6/5 on Trustpilot</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <h3>✅ What They Do Well</h3>
+      <p>• <strong>MCP Integration</strong> — Connects trading data to Claude/VS Code via Model Context Protocol<br>• Portfolio-level insights based on actual holdings<br>• Real-time market data in AI conversations<br>• OAuth-based secure authentication<br>• Read-only access (no accidental trades via AI)<br>• Advanced Option Chain with PCR, Max Pain, India VIX</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <h3>❌ User Complaints (from forums, Quora, PissedConsumer)</h3>
+      <p>• <strong>MCP is developer-only</strong> — requires Claude Desktop or VS Code setup. A Tier-2 user in Jaipur will never use this<br>• <strong>No in-app AI assistant</strong> — AI exists outside the app, not inside it<br>• App instability and order failures during volatile markets<br>• "Worst customer service ever" — tickets unresolved for weeks<br>• Login OTP failures, expired OTPs, invalid OTP errors<br>• Unauthorized AMC charges on "lifetime free" accounts<br>• WhatsApp chatbot is basic FAQ, not conversational AI<br>• <strong>TrustScore 1.6/5</strong> — rated "Bad" on Trustpilot</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h3>🎯 SmartBhai Opportunity</h3>
+      <p>• Build AI <strong>inside the app</strong>, not as external MCP integration<br>• Make it work for non-technical users — no setup required<br>• Hinglish support that Upstox completely lacks<br>• Proactive insights (push to user) vs reactive (user must ask)<br>• Memory system that Upstox MCP doesn't have — every session starts fresh there</p>
+    </div>
+  </div>
+</div>
+
+<!-- FYERS -->
+<div class="section reveal">
+  <h2 style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🔵</span> Fyers</h2>
+  <p class="subtitle">Tech-driven broker · FIA + FIA GPT + MCP — three separate AI products</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <h3>✅ What They Do Well</h3>
+      <p>• <strong>FIA (FYERS Intelligent Assistant)</strong> — AI screener creator using natural language. Type "stocks with high OI buildup" and get a live screener<br>• <strong>FIA GPT</strong> — ChatGPT integration trained on Indian markets. Can analyze portfolio, sector exposure, options chain<br>• <strong>MCP Server</strong> — For developer/quant users<br>• Stable platform with TradingView integration<br>• Good reviews on TradingView (4+ stars)</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <h3>❌ User Complaints (from Fyers support docs, community)</h3>
+      <p>• <strong>FIA gives gibberish after ~10 queries</strong> — official docs admit "FIA may start giving gibberish or irrelevant answers after ~10 queries in one session"<br>• Must "start a new chat to reset it" — no conversation memory<br>• <strong>"Cross-check all outputs"</strong> — Fyers themselves warn AI can be wrong<br>• FIA GPT requires ChatGPT subscription — not free<br>• <strong>Three separate AI products</strong> (FIA, FIA GPT, MCP) — confusing for users. Which one to use?<br>• No personalization — doesn't adapt to user's risk level<br>• Primarily for intermediate/advanced traders — beginners feel lost<br>• Customer support tickets unresolved for months<br>• Order rejections and "excessive conservative risk blocking"</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h3>🎯 SmartBhai Opportunity</h3>
+      <p>• <strong>One unified AI</strong> instead of three confusing products<br>• Memory that persists — no "gibberish after 10 queries" problem<br>• <strong>Free AI</strong> — no ChatGPT subscription needed<br>• Adaptive profiling that Fyers completely lacks<br>• Beginner-first design with Hinglish, analogies, and education<br>• AI that explains WHY, not just WHAT (Fyers shows data, doesn't explain it)</p>
+    </div>
+  </div>
+</div>
+
+<!-- DHAN -->
+<div class="section reveal">
+  <h2 style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🟢</span> Dhan</h2>
+  <p class="subtitle">1M+ users · Best-in-class trading UX · TradingView native integration</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <h3>✅ What They Do Well</h3>
+      <p>• <strong>ScanX AI Screener</strong> — 50+ readymade screeners for stocks<br>• Native TradingView integration — best charting in India<br>• <strong>Scalper Mode</strong> — specialized for active F&amp;O traders<br>• Iceberg &amp; Super Orders for advanced execution<br>• Zero delivery brokerage, up to 5x leverage<br>• Clean, fast UI praised by active traders</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <h3>❌ User Complaints (from TradingView reviews, community, Quora)</h3>
+      <p>• <strong>"Not ideal for novice or beginner traders"</strong> — official review sites note this<br>• <strong>No educational content</strong> — no research reports, stock tips, or learning resources<br>• No relationship managers for guidance<br>• "App is buggy &amp; price moves at delayed pace" — TradingView review<br>• "Avg and PnL not calculated correctly in options" — multiple reports<br>• <strong>No conversational AI at all</strong> — ScanX is a screener, not an assistant<br>• No mutual fund, insurance, or bond investing<br>• UI issues — "last forever order hidden and blocked by bottom UI"<br>• Fraud complaints on Quora — "biggest fraud in the market"</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h3>🎯 SmartBhai Opportunity</h3>
+      <p>• <strong>Education-first approach</strong> that Dhan completely ignores<br>• Conversational AI assistant — Dhan has zero<br>• AI Glossary + micro-lessons for the beginners Dhan can't serve<br>• Options chain simplification — Dhan shows raw data, we explain it<br>• Portfolio risk scoring — Dhan doesn't analyze your risk<br>• Hinglish support for the Tier-2/3 users Dhan's advanced UI alienates</p>
+    </div>
+  </div>
+</div>
+
+<!-- INDMONEY -->
+<div class="section reveal">
+  <h2 style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🟡</span> INDmoney</h2>
+  <p class="subtitle">10M+ users · All-in-one financial super app · Indian + US stocks + MF + insurance</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <h3>✅ What They Do Well</h3>
+      <p>• <strong>Holistic wealth tracking</strong> — stocks, MF, bank accounts, NPS, credit score all in one app<br>• AI-powered personalized investment recommendations based on goals and risk tolerance<br>• Portfolio analytics — asset allocation, benchmark performance, sector distribution<br>• Automated expense and investment tracking<br>• US stock investing from India starting ₹100<br>• Calendarized P&amp;L and dividend tracking</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <h3>❌ User Complaints (from Quora, Play Store, forums)</h3>
+      <p>• <strong>Major privacy concerns</strong> — "They pulled my Aadhaar from thin air without me providing it" (Quora)<br>• "Not serious about data privacy and data protection" — multiple Quora reports<br>• <strong>Forces app download</strong> — no web alternative, seen as data harvesting<br>• High currency conversion charges for US stocks (ICICI charged 75.6/$ vs 73.5 market rate)<br>• <strong>No conversational AI</strong> — recommendations are push-based, can't ask questions<br>• App crashes and login errors reported<br>• <strong>No options/F&amp;O depth</strong> — weak on derivatives analysis<br>• Generic recommendations — not truly personalized to trading style</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h3>🎯 SmartBhai Opportunity</h3>
+      <p>• <strong>Conversational AI</strong> that INDmoney lacks — users can ASK, not just receive<br>• Deep F&amp;O and options analysis — INDmoney's weakest area<br>• Transparent data handling — no privacy concerns<br>• Adaptive profiling that evolves — INDmoney's recommendations are static<br>• Strategy Builder + P&amp;L Simulator — INDmoney has nothing like this<br>• Memory system for continuity — INDmoney treats every session as new</p>
+    </div>
+  </div>
+</div>
+
+<!-- MULTIBAGG AI -->
+<div class="section reveal">
+  <h2 style="display:flex;align-items:center;gap:10px"><span style="font-size:28px">🤖</span> Multibagg AI</h2>
+  <p class="subtitle">Shark Tank featured · AI stock research platform · NSE/BSE focused</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <h3>✅ What They Do Well</h3>
+      <p>• <strong>Pure conversational AI</strong> for stock research — ask questions, get AI answers<br>• Connect your portfolio for personalized insights<br>• Data and analytics for publicly traded Indian companies<br>• Shark Tank validation — credibility boost<br>• Focused specifically on Indian markets (NSE/BSE)</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <h3>❌ Limitations</h3>
+      <p>• <strong>Not a broker</strong> — can't execute trades. Research only<br>• Users must switch between Multibagg (research) and their broker (trading) — friction<br>• <strong>No options chain analysis</strong> — equity research only<br>• No strategy builder or P&amp;L simulator<br>• No risk profiling or adaptive behavior<br>• <strong>"AI can make mistakes, check important information"</strong> — their own disclaimer<br>• No Hinglish/regional language support<br>• Limited to research — no education, no learning path</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <h3>🎯 SmartBhai Opportunity</h3>
+      <p>• <strong>Research + Trading in one app</strong> — no context switching<br>• Full options analysis that Multibagg doesn't touch<br>• Integrated strategy builder with one-tap trade execution (future)<br>• Education layer for beginners — Multibagg assumes knowledge<br>• Adaptive profiling — Multibagg treats everyone the same<br>• Hinglish for Tier-2/3 — Multibagg is English-only</p>
+    </div>
+  </div>
+</div>
+
+<!-- BROKER LANDSCAPE -->
+<div class="section reveal">
+  <h2 style="display:flex;align-items:center;gap:10px"><span style="font-size:28px;color:var(--accent)">⭐</span> The Broker Landscape &amp; The Gap We Fill</h2>
+  <p class="subtitle">7M+ app users · ₹20 flat brokerage · Free demat · But limited educational resources and no AI</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <h3>✅ Current Strengths</h3>
+      <p>• 7M+ users — large existing base to activate<br>• ₹20 flat brokerage — cost-competitive<br>• Free demat account opening<br>• MTFs, advanced charts, advisory services<br>• Already has content on market sentiment, India VIX education<br>• Strong brand in Tier-2/3 cities</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <h3>❌ Current Gaps (from TechJockey, user reviews)</h3>
+      <p>• <strong>"Limited educational resources"</strong> — less comprehensive than competitors<br>• <strong>"Occasional technical glitches"</strong> — reported by multiple users<br>• <strong>"High-volume traders may need more features"</strong><br>• <strong>No AI assistant of any kind</strong> — biggest gap vs competition<br>• No conversational guidance for beginners<br>• No options simplification layer<br>• No personalized risk analysis<br>• No adaptive learning or user profiling</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent);background:rgba(108,43,217,0.08)">
+      <h3>🚀 What Our AI Proposal Adds</h3>
+      <p>• <strong>Conversational AI with memory</strong> — remembers users across sessions<br>• <strong>Adaptive investor profiling</strong> — Safe/Moderate/Risky<br>• <strong>Options simplified</strong> — 4 key levels instead of raw tables<br>• <strong>Strategy Builder + P&amp;L Simulator</strong><br>• <strong>9 market indicators</strong> explained in plain language<br>• <strong>Hinglish support</strong> — first broker to do this natively<br>• <strong>AI Learning Hub</strong> — fills the education gap<br>• <strong>35+ Tier-2/3 scenario questions</strong> pre-built</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETITIVE MATRIX -->
+<div class="section reveal">
+  <div class="section-badge">📊 Feature Comparison Matrix</div>
+  <h2>SmartBhai AI vs Every Competitor</h2>
+  <p class="subtitle">Green = has it · Red = missing · Yellow = partial. Based on research as of March 2026.</p>
+  <div style="overflow-x:auto">
+  <table class="compare-table">
+    <thead><tr><th>Feature</th><th style="color:var(--accent)">SmartBhai AI (Ours)</th><th>Upstox</th><th>Fyers</th><th>Dhan</th><th>INDmoney</th><th>Multibagg</th></tr></thead>
+    <tbody>
+      <tr><td>In-App Conversational AI</td><td style="color:var(--success)">✅ Full chat</td><td style="color:var(--danger)">❌ External only</td><td style="color:var(--accent)">🟡 FIA GPT (paid)</td><td style="color:var(--danger)">❌ None</td><td style="color:var(--danger)">❌ None</td><td style="color:var(--success)">✅ Chat</td></tr>
+      <tr><td>Portfolio-Aware Responses</td><td style="color:var(--success)">✅ Real holdings</td><td style="color:var(--success)">✅ Via MCP</td><td style="color:var(--accent)">🟡 FIA GPT only</td><td style="color:var(--danger)">❌</td><td style="color:var(--accent)">🟡 Basic</td><td style="color:var(--success)">✅</td></tr>
+      <tr><td>Options Chain Simplification</td><td style="color:var(--success)">✅ Key levels + PCR</td><td style="color:var(--accent)">🟡 Raw data</td><td style="color:var(--accent)">🟡 Screener only</td><td style="color:var(--accent)">🟡 Raw data</td><td style="color:var(--danger)">❌ Weak</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>Strategy Builder (Bull/Bear/Hedge)</td><td style="color:var(--success)">✅ With P&amp;L</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>P&amp;L Simulator (What-If)</td><td style="color:var(--success)">✅</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>Memory System (Cross-Session)</td><td style="color:var(--success)">✅ Persistent</td><td style="color:var(--danger)">❌ Resets</td><td style="color:var(--danger)">❌ Gibberish after 10</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>Adaptive Risk Profiling</td><td style="color:var(--success)">✅ Safe/Mod/Risky</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--accent)">🟡 Static quiz</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>Hinglish / Regional Language</td><td style="color:var(--success)">✅ Native</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>Market Sentiment (Multi-Indicator)</td><td style="color:var(--success)">✅ 9 indicators</td><td style="color:var(--accent)">🟡 Basic</td><td style="color:var(--accent)">🟡 Via FIA</td><td style="color:var(--accent)">🟡 Screeners</td><td style="color:var(--danger)">❌</td><td style="color:var(--accent)">🟡</td></tr>
+      <tr><td>Education / Learning Hub</td><td style="color:var(--success)">✅ Lessons + Glossary</td><td style="color:var(--accent)">🟡 Articles</td><td style="color:var(--accent)">🟡 Blog</td><td style="color:var(--danger)">❌ None</td><td style="color:var(--accent)">🟡 Basic</td><td style="color:var(--danger)">❌</td></tr>
+      <tr><td>Free (No Subscription)</td><td style="color:var(--success)">✅ Freemium 3-tier<br><span style="font-size:10px;color:var(--muted)">Free → ₹50K/20 trades → ₹5L/50 trades</span></td><td style="color:var(--success)">✅ Free MCP</td><td style="color:var(--danger)">❌ Needs ChatGPT+</td><td style="color:var(--success)">✅ Free</td><td style="color:var(--success)">✅ Free</td><td style="color:var(--success)">✅ Free</td></tr>
+      <tr><td>Monetization via AI</td><td style="color:var(--success)">✅ AI drives deposits,<br>trades &amp; retention</td><td style="color:var(--danger)">❌ No monetization</td><td style="color:var(--danger)">❌ Relies on ChatGPT</td><td style="color:var(--danger)">❌ No AI revenue</td><td style="color:var(--danger)">❌ No AI revenue</td><td style="color:var(--accent)">🟡 Subscription</td></tr>
+      <tr><td>Tier-2/3 Beginner Focus</td><td style="color:var(--success)">✅ Core design</td><td style="color:var(--danger)">❌ Developer focus</td><td style="color:var(--danger)">❌ Advanced users</td><td style="color:var(--danger)">❌ Active traders</td><td style="color:var(--accent)">🟡 Partial</td><td style="color:var(--danger)">❌ English only</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- KEY INSIGHT -->
+<div class="section reveal">
+  <div class="section-badge">💡 The Big Insight</div>
+  <h2>Why SmartBhai Wins for Tier-2/3</h2>
+  <p class="subtitle">Every competitor built AI for metro power users. Nobody built AI for the 60%+ of new investors coming from Jaipur, Indore, Lucknow, Raipur.</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--accent);background:rgba(245,158,11,0.05)">
+      <div class="card-icon bg-amber">🏙️</div>
+      <h3>Competitors Target Metro Users</h3>
+      <p>Upstox MCP needs Claude Desktop setup. Fyers FIA GPT needs ChatGPT subscription. Dhan is built for scalpers. Multibagg is English-only research. INDmoney focuses on wealth management for HNIs.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success);background:rgba(16,185,129,0.05)">
+      <div class="card-icon bg-green">🏘️</div>
+      <h3>SmartBhai AI Targets Bharat</h3>
+      <p>Hinglish responses with cricket analogies. One-tap from insight to explanation. No setup required. Free AI models. Adaptive profiling that starts simple and grows with the user. Education-first, not data-first.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--primary);background:rgba(108,43,217,0.05)">
+      <div class="card-icon bg-purple">📊</div>
+      <h3>The Numbers</h3>
+      <p><strong>21.6 Cr</strong> demat accounts. <strong>60%+</strong> from Tier-2/3. <strong>91%</strong> lose in F&amp;O. <strong>Zero</strong> competitors serve them with AI. That's the gap. That's the opportunity. That's what we built.</p>
+    </div>
+  </div>
+</div>`,
+
+optionsai: `
+<div class="hero" style="padding:40px 20px 30px">
+  <div class="section-badge">� Options AI — The Growth Engine</div>
+  <h1>How AI Turns Tier-2/3 Investors Into Confident Options Traders</h1>
+  <p>92% of retail F&amp;O traders lose money. Not because options are bad — but because nobody explains them properly. AI changes that.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">92%</div><div class="label">Retail traders lose in F&amp;O (SEBI)</div></div>
+    <div class="hero-stat"><div class="num">₹1.1L</div><div class="label">Avg loss per trader/year</div></div>
+    <div class="hero-stat"><div class="num">₹15-20L</div><div class="label">New SEBI min lot size (index)</div></div>
+    <div class="hero-stat"><div class="num">₹1.06L Cr</div><div class="label">Total retail F&amp;O loss FY25</div></div>
+  </div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="section reveal">
+  <div class="section-badge">🔴 The Problem</div>
+  <h2>Why Tier-2/3 Investors Lose in Options</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--danger)"><div class="card-icon bg-red">📱</div><h3>They Follow Tips Blindly</h3><p>WhatsApp groups, Telegram channels, YouTube "gurus" — Tier-2/3 investors trade on tips without understanding the trade. "Buy NIFTY 22500 CE" means nothing to them. They don't know max loss, breakeven, or when to exit.</p></div>
+    <div class="card" style="border-left:3px solid var(--danger)"><div class="card-icon bg-red">📊</div><h3>Options Data Is Incomprehensible</h3><p>OI, IV, Greeks, PCR, Max Pain — a raw options chain has 15+ columns of data. A first-time trader in Raipur sees this and either closes the app or trades randomly.</p></div>
+    <div class="card" style="border-left:3px solid var(--danger)"><div class="card-icon bg-red">💸</div><h3>No Risk Understanding</h3><p>They don't know the difference between buying a call (limited risk) and selling a naked put (unlimited risk). SEBI data shows average loss of ₹1.1 lakh per trader — often their entire savings.</p></div>
+    <div class="card" style="border-left:3px solid var(--danger)"><div class="card-icon bg-red">🚫</div><h3>SEBI Lot Size Increase</h3><p>SEBI raised index lot sizes from ~₹5L to ₹15-20L. This prices out most Tier-2/3 investors from index options. They need stock options guidance — which is even more complex.</p></div>
+  </div>
+</div>
+
+<!-- THE AI SOLUTION -->
+<div class="section reveal">
+  <div class="section-badge">🟢 The AI Solution</div>
+  <h2>How Our AI Makes Options Accessible</h2>
+  <p class="subtitle">The AI doesn't just show data — it translates, explains, simulates, and protects.</p>
+  <div class="flow-container">
+    <div class="flow-box" style="border-left:3px solid var(--primary-light)"><h4>Step 1: Educate First</h4><p>Before any trade, AI teaches the concept. "Options ka matlab hai — aapko right milta hai, obligation nahi. Jaise movie ticket — use karo ya mat karo, ticket ka paisa gaya."</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--accent)"><h4>Step 2: Simplify the Chain</h4><p>Raw 15-column table → 4 Key Levels (Max Pain, Support, Resistance, IV%). PCR color-coded. One-line AI interpretation: "Market expects NIFTY between 22,400-22,600 this week."</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--success)"><h4>Step 3: Build Strategy — Buy OR Sell</h4><p><strong>Buying:</strong> "I'm bullish" → Bull Call Spread: Buy 22400 CE ₹172, Sell 22500 CE ₹118. Max Profit: ₹46. Max Loss: ₹54.<br><br><strong>Selling (Income):</strong> "I want to earn from my holdings" → Covered Call: Sell RELIANCE 2750 CE at ₹35. Earn ₹35×250 = ₹8,750 income. Risk: shares get called away above 2750.<br><br><strong>Selling (Neutral):</strong> "Market will stay flat" → Short Iron Condor: Sell 22400 CE + Sell 22500 PE, Buy wings. Net credit: ₹48. Max loss: ₹52.</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--accent)"><h4>Step 4: Simulate P&amp;L</h4><p>"If NIFTY goes to 22,600 → you make ₹46/lot. If it stays at 22,400 → you lose ₹54/lot. If it crashes to 22,000 → you STILL only lose ₹54/lot." User sees max loss BEFORE trading.</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--danger)"><h4>Step 5: Risk Gate</h4><p>If user tries naked option selling → AI warns: "Naked put selling ka max loss unlimited hai. Aapke ₹50K wallet mein ₹2L+ ka risk hai. Instead, try a credit spread — same income, capped risk."</p></div>
+  </div>
+</div>
+
+<!-- FREEMIUM MODEL -->
+<div class="section reveal">
+  <div class="section-badge">💰 Freemium Strategy</div>
+  <h2>AI Monetization — Tiered Access Model</h2>
+  <p class="subtitle">The AI should drive trading volume, not be a standalone product. The goal: more trades, more brokerage revenue, more engaged users.</p>
+
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--muted);border-top:3px solid var(--muted)">
+      <h3 style="color:var(--muted)">🆓 FREE TIER — AI Lite</h3>
+      <p style="margin-bottom:12px"><strong>Who gets it:</strong> Every user, zero conditions</p>
+      <p>• Market summary (daily AI briefing)<br>• 3 AI chat messages per day<br>• Portfolio health score (number only, no details)<br>• Basic glossary &amp; 2 micro-lessons/week<br>• Options chain view (raw data, no AI interpretation)</p>
+      <div class="card-tag tag-purple" style="margin-top:12px">Goal: Hook users, show AI value, create upgrade desire</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--accent);border-top:3px solid var(--accent);background:rgba(245,158,11,0.03)">
+      <h3 style="color:var(--accent)">⚡ SMART TIER — AI Pro (Auto-Unlock)</h3>
+      <p style="margin-bottom:12px"><strong>Unlocked when ANY of these conditions are met:</strong></p>
+      <p>• <strong>₹50,000+ wallet balance</strong> in your broker account<br>• <strong>20+ trades/month</strong> (any segment)<br>• <strong>₹2,00,000+ portfolio value</strong> in your holdings<br>• <strong>Active Power Investor Pack</strong> subscriber (₹399/month)</p>
+      <p style="margin-top:12px">• <strong>Unlimited AI chat</strong> with memory &amp; profiling<br>• Full options chain AI interpretation<br>• Strategy Builder — <strong>Buy AND Sell strategies</strong>:<br>&nbsp;&nbsp;→ Bull/Bear Call &amp; Put Spreads<br>&nbsp;&nbsp;→ Covered Calls on existing holdings<br>&nbsp;&nbsp;→ Cash-Secured Puts for income<br>&nbsp;&nbsp;→ Credit Spreads (sell premium, capped risk)<br>• P&amp;L Simulator (unlimited scenarios)<br>• Full portfolio risk analysis with actionable suggestions<br>• All micro-lessons &amp; AI Tutor<br>• Market sentiment with 9 indicators explained</p>
+      <div class="card-tag tag-amber" style="margin-top:12px">Goal: Reward active traders, incentivize deposits &amp; trading volume</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--primary);border-top:3px solid var(--primary);background:rgba(108,43,217,0.03)">
+      <h3 style="color:var(--primary-light)">🏆 ELITE TIER — AI Ultra (Premium)</h3>
+      <p style="margin-bottom:12px"><strong>Unlocked when ANY of these conditions are met:</strong></p>
+      <p>• <strong>₹5,00,000+ portfolio value</strong> in your account<br>• <strong>50+ trades/month</strong><br>• <strong>Active Ultra Trader Pack</strong> subscriber (₹899/month)<br>• <strong>₹2,00,000+ wallet balance</strong></p>
+      <p style="margin-top:12px">• Everything in Smart Tier, plus:<br>• <strong>AI-powered trade ideas</strong> (not tips — educational scenarios)<br>• <strong>Advanced Greeks explanation</strong> per position<br>• <strong>Multi-leg strategy builder</strong> (Iron Condor, Butterfly, Calendar)<br>• <strong>Portfolio-level hedging recommendations</strong><br>• <strong>Earnings impact simulator</strong> (what happens to your stocks)<br>• <strong>Priority AI model</strong> (faster, higher-quality responses)<br>• <strong>Export AI analysis</strong> as PDF reports</p>
+      <div class="card-tag tag-purple" style="margin-top:12px">Goal: Retain HNI traders, maximize lifetime value</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY THIS MODEL WORKS -->
+<div class="section reveal">
+  <div class="section-badge">🧮 Why This Freemium Model Works for Tier-2/3</div>
+  <h2>Research-Backed Tier Design</h2>
+  <table class="compare-table">
+    <thead><tr><th>Tier-2/3 Reality</th><th>Our Design Response</th><th>Business Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Average starting portfolio: ₹25K-₹1L</td><td>Free Tier has no minimum — everyone gets a taste of AI</td><td>Maximizes top-of-funnel. 7M+ users see AI value</td></tr>
+      <tr><td>₹50K is achievable savings for a Tier-2 professional</td><td>₹50K wallet unlocks Smart Tier — feels like a reward, not a paywall</td><td>Incentivizes deposits. ₹50K × millions of users = massive AUM growth</td></tr>
+      <tr><td>20 trades/month = ~1 trade per working day</td><td>Active traders auto-unlock AI — rewards engagement</td><td>Directly drives brokerage revenue (20 × ₹20 = ₹400/month in brokerage)</td></tr>
+      <tr><td>₹2L portfolio is 6-12 months of SIP for a Tier-2 salaried person</td><td>Portfolio milestone unlocks AI — rewards long-term investing</td><td>Increases AUM retention. Users won't move portfolio to lose AI access</td></tr>
+      <tr><td>SEBI raised F&amp;O lot sizes to ₹15-20L — prices out small traders</td><td>AI teaches stock options (lower lot sizes) as alternative to index options</td><td>Opens new F&amp;O revenue stream from stock options</td></tr>
+      <tr><td>91% lose in F&amp;O due to lack of knowledge</td><td>AI educates BEFORE trade, shows max loss, suggests defined-risk strategies</td><td>Reduces churn from losses. Educated traders trade longer</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- REVENUE MATH -->
+<div class="section reveal">
+  <div class="section-badge">📊 Revenue Impact Model</div>
+  <h2>How AI Drives Revenue — The Math</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">💰</div>
+      <h3>Deposit Incentive</h3>
+      <p>If 5% of 7M users deposit ₹50K to unlock AI Pro:<br><strong>3.5L users × ₹50K = ₹1,750 Cr new deposits</strong><br>Even at 1% conversion: ₹350 Cr new AUM</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">📈</div>
+      <h3>Trading Volume Boost</h3>
+      <p>If AI users do 5 extra trades/month:<br><strong>3.5L users × 5 trades × ₹20 = ₹3.5 Cr/month</strong><br>Annual: ₹42 Cr additional brokerage</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🔄</div>
+      <h3>F&amp;O Conversion</h3>
+      <p>If 10% of AI users start options trading:<br><strong>35K new F&amp;O traders × 10 trades/month × ₹20</strong><br>= ₹70L/month = ₹8.4 Cr/year new F&amp;O revenue</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">🛡️</div>
+      <h3>Retention Value</h3>
+      <p>AI creates switching cost — users won't leave because:<br>• Memory system knows their history<br>• Profile is built over months<br>• Losing AI access = losing their "financial advisor"</p>
+    </div>
+  </div>
+</div>
+
+<!-- OPTIONS JOURNEY -->
+<div class="section reveal">
+  <div class="section-badge">🗺️ The Options Journey</div>
+  <h2>From "Options Kya Hai?" to Confident Trader — AI-Guided Path</h2>
+  <div class="flow-container">
+    <div class="flow-box" style="border-left:3px solid var(--success)">
+      <h4>🌱 Week 1-2: Learn (Free Tier)</h4>
+      <p>AI Glossary teaches: Call, Put, Strike, Premium, Expiry in one line each. Micro-lesson: "Options 101 — Movie Ticket Analogy." User asks: "Options kya hota hai?" → AI explains in Hinglish with examples.</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--muted)">Profile: Beginner · No trades yet · Building curiosity</p>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--accent)">
+      <h4>📊 Week 3-4: Observe (Free → Smart Tier)</h4>
+      <p>User deposits ₹50K → Smart Tier unlocks. Sees simplified options chain with 4 key levels. AI explains: "NIFTY Max Pain 22,450 — market will likely stay near here." Starts understanding PCR, IV. Hasn't traded yet — just watching.</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--muted)">Profile: Curious Learner · ₹50K deposited · AI Pro unlocked</p>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--primary-light)">
+      <h4>🎯 Week 5-6: First Trade (Smart Tier)</h4>
+      <p>User says "I think NIFTY will go up." AI suggests: "Try buying NIFTY 22500 CE at ₹118. Max loss = ₹118 × lot size. If NIFTY reaches 22,700, you make ₹82/lot." User places first options trade with full understanding of risk.</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--muted)">Profile: ⚖️ Moderate · First F&amp;O trade · AI guided every step</p>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--accent)">
+      <h4>📈 Month 2-3: Buy &amp; Sell Strategies (Smart Tier)</h4>
+      <p>AI introduces <strong>buying spreads</strong>: "Instead of naked call, try Bull Call Spread — same upside, max loss only ₹54 instead of ₹172."<br><br>Then <strong>selling for income</strong>: "You hold 15 RELIANCE shares. Sell 1 RELIANCE 2750 CE at ₹35 — earn ₹8,750 income while holding your shares. If RELIANCE stays below 2750, you keep shares + premium."<br><br>Then <strong>credit spreads</strong>: "Sell NIFTY 22200 PE at ₹62, Buy 22100 PE at ₹42. Net credit: ₹20/lot. Max loss: ₹80/lot. You earn if NIFTY stays above 22,200."</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--muted)">Profile: ⚖️ Moderate · 15-20 trades/month · Buying AND selling strategies</p>
+    </div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--danger)">
+      <h4>⚡ Month 4+: Advanced (Elite Tier)</h4>
+      <p>Portfolio grows to ₹5L+ → Elite Tier unlocks. AI teaches Iron Condor, Calendar Spreads. Uses Greeks explanation. Earnings simulator shows impact before results. User trades 50+ times/month with confidence. AI always shows max loss as guardrail.</p>
+      <p style="margin-top:6px;font-size:11px;color:var(--muted)">Profile: 🔥 Risky · 50+ trades/month · Elite AI · Power user</p>
+    </div>
+  </div>
+</div>
+
+<!-- STOCK OPTIONS OPPORTUNITY -->
+<div class="section reveal">
+  <div class="section-badge">🎯 Post-SEBI Opportunity</div>
+  <h2>Stock Options — The Untapped Tier-2/3 Goldmine</h2>
+  <p class="subtitle">SEBI raised index lot sizes to ₹15-20L, pricing out small traders. But stock options still have lot sizes of ₹2-5L. AI can guide Tier-2/3 investors here.</p>
+  <div class="cards-grid">
+    <div class="card"><div class="card-icon bg-green">📉</div><h3>Lower Capital Needed</h3><p>Stock options (RELIANCE, TCS, HDFCBANK) have lot sizes of ₹2-5L vs ₹15-20L for NIFTY. A Tier-2 investor with ₹50K can trade stock options with proper margin.</p></div>
+    <div class="card"><div class="card-icon bg-amber">🧠</div><h3>AI Knows Their Holdings — Sell Calls for Income</h3><p>User holds RELIANCE shares → AI suggests: "Sell RELIANCE 2750 CE at ₹35. Earn ₹8,750 income from your existing 250 shares. If RELIANCE stays below 2750, you keep shares + full premium. Zero additional capital needed." This is the <strong>covered call</strong> — the safest options selling strategy, and AI makes it one-tap simple.</p></div>
+    <div class="card"><div class="card-icon bg-purple">🛡️</div><h3>Hedging Existing Portfolio</h3><p>"You hold 15 RELIANCE shares worth ₹40,200. Buy 1 RELIANCE 2600 PE at ₹45 to protect against a 10% fall. Cost: ₹45 × 250 = ₹11,250. Protection: ₹4,020."</p></div>
+    <div class="card"><div class="card-icon bg-blue">📚</div><h3>AI Teaches Stock-Specific</h3><p>"RELIANCE IV is 22% vs historical 28% — options are cheap right now. Good time to buy protection." This level of stock-specific options guidance doesn't exist anywhere.</p></div>
+  </div>
+</div>
+
+<!-- SAFETY GUARDRAILS -->
+<div class="section reveal">
+  <div class="section-badge">🛡️ Safety First</div>
+  <h2>AI Guardrails — Protecting Tier-2/3 Investors</h2>
+  <p class="subtitle">The goal is more trades, not more losses. Every AI feature has built-in safety.</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--danger)"><h3>🚫 Risk Gate Before Naked Selling</h3><p>"You're about to sell a naked NIFTY put. Max loss is theoretically unlimited — could exceed your entire ₹50K wallet. Instead, try a Bull Put Spread — same income, max loss capped at ₹54/lot."</p></div>
+    <div class="card" style="border-left:3px solid var(--accent)"><h3>⚠️ Position Size Warning</h3><p>"This trade uses 80% of your available margin. If the trade goes against you, you'll get a margin call. Consider reducing to 2 lots instead of 5 — keeps risk at 30% of margin."</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>📊 Max Loss Always Visible</h3><p>Every strategy suggestion shows Max Loss in ₹ BEFORE the user trades. "Bull Call Spread: Max you can lose = ₹54/lot = ₹2,700 for 1 lot. Can you afford to lose this?"</p></div>
+    <div class="card" style="border-left:3px solid var(--primary)"><h3>🎓 Education Before Execution</h3><p>First time a user asks about any strategy, AI explains the concept FIRST, then shows the trade. "Pehle samjho, phir karo" (understand first, then do) — built into every flow.</p></div>
+  </div>
+  <div style="text-align:center;margin-top:20px;padding:20px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:14px">
+    <p style="font-size:14px;font-weight:600;color:var(--success)">SEBI Alignment: Our AI aligns with SEBI's goal of protecting retail investors. It educates before every trade, warns about risks, and never gives buy/sell tips — only educational scenarios with full risk disclosure.</p>
+  </div>
+</div>
+
+<!-- DAILY PROFIT NOTIFICATION — MARKETING ENGINE -->
+<div class="section reveal">
+  <div class="section-badge">🔔 Growth Hack</div>
+  <h2>Daily AI Profit Notification — The Viral Loop</h2>
+  <p class="subtitle">Every day, send users a push notification showing how much profit was made by traders using SmartBhai AI. This creates FOMO, social proof, and drives engagement.</p>
+
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">📱</div>
+      <h3>The Notification</h3>
+      <p style="background:var(--card2);padding:14px;border-radius:10px;margin-top:8px;font-size:13px;border:1px solid var(--border)">
+        🤖 <strong>SmartBhai AI Daily Report</strong><br><br>
+        📊 Today, AI-assisted SmartBhai traders made:<br>
+        🟢 <strong>₹2.4 Cr total profit</strong> across 12,400 trades<br>
+        🎯 Top AI strategy: Bull Call Spread (+68% win rate)<br>
+        📈 Your portfolio: <strong>+₹1,240 today</strong><br><br>
+        <span style="color:var(--primary-light)">Tap to see what AI suggests for tomorrow →</span>
+      </p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">🔄</div>
+      <h3>The Viral Loop</h3>
+      <p>
+        <strong>1. User sees notification</strong> → "Others are making money with AI"<br>
+        <strong>2. Opens app</strong> → Sees their own AI profit/loss for the day<br>
+        <strong>3. Engages with AI</strong> → Asks "what should I do tomorrow?"<br>
+        <strong>4. Makes a trade</strong> → Brokerage revenue for the broker<br>
+        <strong>5. Next day notification</strong> → Loop continues<br><br>
+        For Free Tier users: "AI Pro traders made ₹2.4 Cr today. <strong>Deposit ₹50K to unlock AI Pro →</strong>"
+      </p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">📊</div>
+      <h3>Notification Variants</h3>
+      <p>
+        <strong>Morning (9 AM):</strong> "AI Market Outlook: Mildly Bullish today. VIX low, FIIs buying. Your HDFCBANK may benefit. Tap for strategy →"<br><br>
+        <strong>Evening (4 PM):</strong> "Your AI-tracked portfolio: +₹1,240 today. AI traders collectively made ₹2.4 Cr. See tomorrow's outlook →"<br><br>
+        <strong>Weekly (Sunday):</strong> "This week: AI-assisted traders had 64% win rate. Top strategy: Covered Calls. You explored 3 new topics. Keep your streak! 🔥"<br><br>
+        <strong>Milestone:</strong> "🎉 You've made ₹5,000 profit on AI-suggested strategies this month! Share your journey →"
+      </p>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:14px">
+    <h3 style="font-size:15px;margin-bottom:10px">📈 Why This Works for Tier-2/3</h3>
+    <table class="compare-table" style="margin:0">
+      <thead><tr><th>Psychology</th><th>Mechanism</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Social Proof</td><td>"12,400 traders used AI today" — I'm not alone</td><td>Reduces fear of trying options</td></tr>
+        <tr><td>FOMO</td><td>"AI traders made ₹2.4 Cr" — I'm missing out</td><td>Drives app opens &amp; deposits</td></tr>
+        <tr><td>Personal Relevance</td><td>"YOUR portfolio +₹1,240" — it's about ME</td><td>Emotional connection to AI</td></tr>
+        <tr><td>Gamification</td><td>"3-day streak! Keep learning" — don't break it</td><td>Daily habit formation</td></tr>
+        <tr><td>Upgrade Nudge</td><td>"AI Pro traders made ₹X. Deposit ₹50K to unlock"</td><td>Free → Smart tier conversion</td></tr>
+        <tr><td>Shareability</td><td>"Share your ₹5K milestone" — WhatsApp/Instagram</td><td>Organic user acquisition</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="text-align:center;margin-top:16px;padding:16px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:14px">
+    <p style="font-size:13px;color:var(--accent)"><strong>Important:</strong> All profit numbers shown are aggregate/anonymized. Individual P&amp;L is the user's own data. No misleading claims — notification always includes: "Past performance doesn't guarantee future results. AI provides educational insights, not trading advice."</p>
+  </div>
+</div>`,
+
+what: `
+<div class="section reveal">
+  <div class="section-badge">🛠️ Question 2</div>
+  <h2>AI-Powered Features We Propose</h2>
+  <p class="subtitle">8 interconnected AI features, each solving a specific Tier-2/3 investor problem.</p>
+  <div class="cards-grid">
+    <div class="card"><div class="card-icon bg-purple">📊</div><h3>AI Portfolio Analyzer</h3><p>Real-time health score (1-10), sector concentration warnings, diversification suggestions with specific stock/ETF recommendations, risk-adjusted return comparison vs benchmarks.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-amber">📈</div><h3>Options Chain Simplifier</h3><p>Extracts 4 key levels (Max Pain, Support, Resistance, IV). PCR color-coded per strike. Plain-English interpretation. Hedging suggestions linked to user's equity portfolio.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-green">🎯</div><h3>Strategy Builder</h3><p>User picks market view (Bullish/Bearish/Neutral/Hedge). AI suggests strategy with exact strikes, premiums, Max Profit, Max Loss, Breakeven from live options data.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-blue">💰</div><h3>P&amp;L Simulator</h3><p>"If NIFTY falls 5%, how much will I lose?" — shows exact ₹ impact on portfolio. Compares strategies side-by-side. Shows hedging benefit.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-red">📉</div><h3>Market Sentiment Engine</h3><p>Analyzes 9 indicators (VIX, PCR, FII/DII, RSI, MACD, Bollinger, MAs, Max Pain, IV%). Gives overall sentiment + explains each in plain language with analogies.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-purple">🧠</div><h3>Memory System</h3><p>Remembers past conversations, goals, preferences. Tracks topics explored. Creates continuity across sessions. User doesn't repeat themselves.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-amber">👤</div><h3>Adaptive Investor Profiling</h3><p>Analyzes every message for behavioral signals. Classifies as Safe/Moderate/Risky. Adapts tone, strategies, and risk warnings. Shows profile badge in chat.</p><div class="card-tag tag-green">✅ Built</div></div>
+    <div class="card"><div class="card-icon bg-green">📚</div><h3>AI Learning Hub</h3><p>Bite-sized 2-5 min lessons. AI Glossary — complex terms in one line. Gamification streaks. "Ask AI Tutor" for instant concept clarification in Hinglish.</p><div class="card-tag tag-green">✅ Built</div></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">📉 Deep Dive</div>
+  <h2>Market Sentiment Indicators</h2>
+  <p class="subtitle">Click any indicator to see how AI explains it to a Tier-2/3 investor.</p>
+  <div class="cards-grid" id="indicatorGrid">
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>🌡️ India VIX (Fear Index)</h4><span class="indicator-signal tag-green">14.2 — LOW FEAR</span></div>
+      <div class="indicator-body"><p><strong>Ranges:</strong> &lt;13 Bullish · 13-18 Neutral · 18-25 Cautious · &gt;25 Bearish</p><p>Current VIX at 14.2 means market is calm. Low volatility = good for holding positions.</p><p class="analogy">💡 Analogy: "VIX is like a fear thermometer. Right now it's reading normal temperature — no fever in the market."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>⚖️ Put-Call Ratio (PCR)</h4><span class="indicator-signal tag-amber">0.93 — NEUTRAL</span></div>
+      <div class="indicator-body"><p><strong>Ranges:</strong> &gt;1.2 Bullish · 0.9-1.2 Neutral · &lt;0.9 Bearish</p><p>PCR at 0.93 means balanced call-put activity. No extreme sentiment either way.</p><p class="analogy">💡 Analogy: "Think of PCR as umbrella count at a cricket match. If many carry umbrellas (puts), rain (crash) usually doesn't come."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>🐋 FII/DII Flows</h4><span class="indicator-signal tag-green">FII +₹630 Cr — BULLISH</span></div>
+      <div class="indicator-body"><p><strong>Signal:</strong> FII buying &gt;₹500 Cr = Strong bullish. FII selling = Bearish pressure.</p><p>FIIs bought ₹630 Cr today — strong foreign support for the market.</p><p class="analogy">💡 Analogy: "FIIs are like big whales in the ocean. When they swim in, the tide rises for everyone."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>🏎️ RSI (Relative Strength Index)</h4><span class="indicator-signal tag-green">58.3 — NEUTRAL</span></div>
+      <div class="indicator-body"><p><strong>Ranges:</strong> &gt;70 Overbought · 30-70 Normal · &lt;30 Oversold</p><p>NIFTY RSI at 58.3 — healthy momentum, not overheated.</p><p class="analogy">💡 Analogy: "RSI is like a speedometer. Above 70 means the stock is running too fast and may need to slow down."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>🏃 MACD</h4><span class="indicator-signal tag-green">BULLISH CROSSOVER</span></div>
+      <div class="indicator-body"><p><strong>Signal:</strong> Bullish crossover 2 days ago — positive momentum building.</p><p>The fast line crossed above the slow line, indicating upward momentum.</p><p class="analogy">💡 Analogy: "Think of two runners. When the fast runner overtakes the slow one, it's a buy signal."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>📏 Bollinger Bands</h4><span class="indicator-signal tag-amber">NEAR MIDDLE — NEUTRAL</span></div>
+      <div class="indicator-body"><p><strong>Bands:</strong> Upper 22,680 · Middle 22,380 · Lower 22,080</p><p>NIFTY near middle band — no extreme stretch in either direction.</p><p class="analogy">💡 Analogy: "Like a rubber band — price tends to snap back to the middle when it stretches too far to either side."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>📐 Moving Averages</h4><span class="indicator-signal tag-green">ABOVE ALL MAs — BULLISH</span></div>
+      <div class="indicator-body"><p><strong>Levels:</strong> 20-DMA: 22,320 · 50-DMA: 22,180 · 200-DMA: 21,650</p><p>NIFTY above all three moving averages — short, medium, and long-term trends are all positive.</p><p class="analogy">💡 Analogy: "Moving averages show the stock's average mood. Being above all of them means the mood has been consistently positive."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>🧲 Max Pain</h4><span class="indicator-signal tag-amber">22,450 — AT MAX PAIN</span></div>
+      <div class="indicator-body"><p><strong>Distance:</strong> NIFTY is exactly at Max Pain — 0% deviation.</p><p>Market tends to gravitate toward Max Pain near expiry. Currently right at it.</p><p class="analogy">💡 Analogy: "Max Pain is like a gravity point. NIFTY tends to get pulled toward this price as expiry approaches."</p></div>
+    </div>
+    <div class="indicator-card" onclick="this.classList.toggle('expanded')">
+      <div class="indicator-header"><h4>💎 IV Percentile</h4><span class="indicator-signal tag-amber">62% — MODERATE</span></div>
+      <div class="indicator-body"><p><strong>Ranges:</strong> &gt;75% Options expensive · 25-75% Normal · &lt;25% Options cheap</p><p>IV at 62% means options are moderately priced. Both buying and selling strategies are viable.</p><p class="analogy">💡 Analogy: "Think of IV like sale season. When IV is low, options are on sale — good time to buy protection."</p></div>
+    </div>
+  </div>
+</div>`,
+
+how: `
+<div class="section reveal">
+  <div class="section-badge">🔄 Question 3</div>
+  <h2>User Flow — From First Open to Power User</h2>
+  <p class="subtitle">The AI adapts as the user evolves. Each stage shows the journey.</p>
+  <div class="flow-container">
+    <div class="flow-box" style="border-left:3px solid var(--success)"><h4>🌱 Day 1 — First-Time User</h4><p>Opens app → Sees portfolio card with AI health badge → Taps insight card → AI Chat opens → Explains in Hinglish → Follow-up suggestions</p><p style="margin-top:8px;font-size:11px;color:var(--muted)">Profile: UNKNOWN · Memory: Session 1</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--accent)"><h4>📚 Day 7 — Returning User</h4><p>AI remembers past topics → Uses Strategy Builder → Gets Bull Call Spread with exact P&amp;L → Tries P&amp;L Simulator</p><p style="margin-top:8px;font-size:11px;color:var(--muted)">Profile: ⚖️ MODERATE (48/100) · 7 sessions</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--danger)"><h4>⚡ Day 30 — Power User</h4><p>Opens AI Chat directly → Gets personalized morning briefing → Asks for Iron Condor → Uses technical indicators</p><p style="margin-top:8px;font-size:11px;color:var(--muted)">Profile: 🔥 RISKY (68/100) · Trader · Advanced</p></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">🖥️ Interaction Model</div>
+  <h2>Where AI Appears in the App</h2>
+  <table class="compare-table"><thead><tr><th>Surface</th><th>Type</th><th>When</th><th>Example</th></tr></thead><tbody>
+    <tr><td>Home Screen</td><td>Insight Cards</td><td>Always visible</td><td>"IT stocks 32% — diversify"</td></tr>
+    <tr><td>Portfolio Tab</td><td>Risk Badge + AI Button</td><td>On portfolio view</td><td>"Risk Score: 6.5/10"</td></tr>
+    <tr><td>Options Tab</td><td>Key Levels + Strategy Builder</td><td>On options view</td><td>Max Pain, Support, Resistance</td></tr>
+    <tr><td>AI Chat</td><td>Conversational</td><td>Center button</td><td>Full Q&amp;A with memory + profile</td></tr>
+    <tr><td>Learn Tab</td><td>Micro-lessons + Glossary</td><td>On learn view</td><td>"What is Stop-Loss?" (2 min)</td></tr>
+    <tr><td>Order Screen <em>(future)</em></td><td>Risk Gate</td><td>Before risky trade</td><td>"Naked put = unlimited risk"</td></tr>
+  </tbody></table>
+</div>
+<div class="section reveal">
+  <div class="section-badge">👤 Adaptive Profiling</div>
+  <h2>How the AI Learns Your Risk Appetite</h2>
+  <div class="flow-container">
+    <div class="flow-box"><h4>📝 Analyze Message</h4><p>risk/safe/hedge → Safe · options/F&amp;O → Moderate · naked/aggressive → Risky · kya hai → Learning · Hindi → Hinglish</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box"><h4>🧮 Calculate Score</h4><p>Weighted formula: (risky×3 + moderate×1.5) ÷ (safe×2 + moderate×1.5 + risky×3 + 1) × 100</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box"><h4>🏷️ Classify &amp; Adapt</h4><p>🛡️ 0-29: SAFE → SIPs, hedging · ⚖️ 30-64: MODERATE → Balanced · 🔥 65-100: RISKY → Advanced with guardrails</p></div>
+  </div>
+</div>`,
+
+answers: `
+<div class="section reveal">
+  <div class="section-badge">🏆 Key Question 1</div>
+  <h2>Most Valuable AI Use Cases — Ranked</h2>
+  <div id="progressBars">
+    <div class="progress-item"><div class="progress-label"><span>#1 Portfolio Risk + Adaptive Profiling</span><span>✅ Built</span></div><div class="progress-bar"><div class="progress-fill" data-width="95" style="background:linear-gradient(90deg,var(--primary),var(--success))"></div></div></div>
+    <div class="progress-item"><div class="progress-label"><span>#2 Options Chain Simplification</span><span>✅ Built</span></div><div class="progress-bar"><div class="progress-fill" data-width="92" style="background:linear-gradient(90deg,var(--primary),var(--accent))"></div></div></div>
+    <div class="progress-item"><div class="progress-label"><span>#3 Conversational AI with Memory</span><span>✅ Built</span></div><div class="progress-bar"><div class="progress-fill" data-width="88" style="background:linear-gradient(90deg,var(--primary),var(--success))"></div></div></div>
+    <div class="progress-item"><div class="progress-label"><span>#4 Market Sentiment in Plain Language</span><span>✅ Built</span></div><div class="progress-bar"><div class="progress-fill" data-width="85" style="background:linear-gradient(90deg,var(--primary),var(--accent))"></div></div></div>
+    <div class="progress-item"><div class="progress-label"><span>#5 Strategy Builder + P&amp;L Simulator</span><span>✅ Built</span></div><div class="progress-bar"><div class="progress-fill" data-width="82" style="background:linear-gradient(90deg,var(--primary),var(--success))"></div></div></div>
+    <div class="progress-item"><div class="progress-label"><span>#6 AI Risk Gate Before Orders</span><span>🔮 Future</span></div><div class="progress-bar"><div class="progress-fill" data-width="65" style="background:linear-gradient(90deg,var(--muted),var(--accent))"></div></div></div>
+    <div class="progress-item"><div class="progress-label"><span>#7 Proactive Push Notifications</span><span>🔮 Future</span></div><div class="progress-bar"><div class="progress-fill" data-width="55" style="background:linear-gradient(90deg,var(--muted),var(--accent))"></div></div></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">📈 Key Question 2</div>
+  <h2>How AI Simplifies Options for Non-Experts</h2>
+  <table class="compare-table"><thead><tr><th>Before AI</th><th></th><th>After AI</th></tr></thead><tbody>
+    <tr><td>Raw table: 15 columns × 30 strikes</td><td style="color:var(--accent);font-size:20px;text-align:center">→</td><td><strong>4 Key Levels:</strong> Max Pain · Support · Resistance · IV%</td></tr>
+    <tr><td>PCR = 0.93 (meaningless)</td><td style="color:var(--accent);font-size:20px;text-align:center">→</td><td>🟡 NEUTRAL — "No extreme fear or greed"</td></tr>
+    <tr><td>"Should I buy calls?"</td><td style="color:var(--accent);font-size:20px;text-align:center">→</td><td>Bull Call Spread: Max Profit ₹46, Max Loss ₹54, Breakeven 22,454</td></tr>
+    <tr><td>"What if NIFTY falls?"</td><td style="color:var(--accent);font-size:20px;text-align:center">→</td><td>Portfolio loses ₹16,600. With hedge: only ₹8,200</td></tr>
+  </tbody></table>
+</div>
+<div class="section reveal">
+  <div class="section-badge">💼 Key Question 3</div>
+  <h2>Portfolio Understanding — 5 Layers</h2>
+  <div class="flow-container">
+    <div class="flow-box" style="border-left:3px solid var(--success)"><h4>Layer 1: Health Score</h4><p>"Risk Score: 6.5/10" → Instant understanding</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--accent)"><h4>Layer 2: Sector Analysis</h4><p>"IT is 32% — like 32 eggs in one basket"</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--primary-light)"><h4>Layer 3: Stock Insights</h4><p>"TATAMOTORS RSI 71 — overbought, set stop-loss at ₹720"</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--danger)"><h4>Layer 4: What-If Scenarios</h4><p>"If IT drops 10%: -₹7,750. Banking cushion: +₹2,400"</p></div>
+    <div class="flow-arrow"></div>
+    <div class="flow-box" style="border-left:3px solid var(--success)"><h4>Layer 5: Actionable Suggestions</h4><p>"Start ₹500/week SIP in Pharma ETF → IT drops from 32% to 27%"</p></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">🔄 Key Question 4</div>
+  <h2>Engagement Flywheel</h2>
+  <div class="cards-grid">
+    <div class="card"><div class="card-icon bg-green">📈</div><h3>+40% Session Time</h3><p>AI gives reasons to stay and explore deeper</p></div>
+    <div class="card"><div class="card-icon bg-purple">🔄</div><h3>+60% Return Rate</h3><p>Memory creates continuity across sessions</p></div>
+    <div class="card"><div class="card-icon bg-amber">📊</div><h3>+25% F&amp;O Participation</h3><p>Options simplified for non-experts</p></div>
+    <div class="card"><div class="card-icon bg-blue">💪</div><h3>+35% Trading Confidence</h3><p>Education + risk awareness builds trust</p></div>
+  </div>
+</div>`,
+
+personas: `
+<div class="section reveal">
+  <div class="section-badge">👥 Key Question 5</div>
+  <h2>New User Personas After AI Integration</h2>
+  <p class="subtitle">Click any persona to see details. These emerge naturally as AI adapts to different user behaviors.</p>
+  <div class="cards-grid" id="personaGrid">
+    <div class="persona-card" onclick="this.classList.toggle('expanded')">
+      <div class="persona-emoji">🌱</div>
+      <div class="persona-name">The Guided Beginner</div>
+      <div class="persona-who">First-time investor from Jaipur, age 25-30</div>
+      <div class="persona-profile tag-green">🛡️ SAFE · Score: 15/100</div>
+      <div class="persona-details">
+        <p><strong>Behavior:</strong> Asks "kya hai?" questions, uses AI Tutor daily, explores glossary</p>
+        <p><strong>AI adapts:</strong> Simple language, SIP focus, lots of analogies, never uses jargon</p>
+        <p><strong>Business value:</strong> Builds long-term investing habit → lifetime customer with growing AUM</p>
+      </div>
+    </div>
+    <div class="persona-card" onclick="this.classList.toggle('expanded')">
+      <div class="persona-emoji">📚</div>
+      <div class="persona-name">The Curious Learner</div>
+      <div class="persona-who">Working professional from Indore, age 28-35</div>
+      <div class="persona-profile tag-amber">⚖️ MODERATE · Score: 40/100</div>
+      <div class="persona-details">
+        <p><strong>Behavior:</strong> Completes learning streaks, gradually explores options, asks follow-ups</p>
+        <p><strong>AI adapts:</strong> Gradually introduces complex concepts, celebrates learning milestones</p>
+        <p><strong>Business value:</strong> Evolves from MF-only to direct equity → higher revenue per user</p>
+      </div>
+    </div>
+    <div class="persona-card" onclick="this.classList.toggle('expanded')">
+      <div class="persona-emoji">📈</div>
+      <div class="persona-name">The Options Explorer</div>
+      <div class="persona-who">Previously avoided F&amp;O, now curious, from Lucknow</div>
+      <div class="persona-profile tag-amber">⚖️ MODERATE · Score: 55/100</div>
+      <div class="persona-details">
+        <p><strong>Behavior:</strong> Uses Strategy Builder, P&amp;L Simulator, asks about defined-risk strategies</p>
+        <p><strong>AI adapts:</strong> Always shows max loss, suggests spreads over naked positions</p>
+        <p><strong>Business value:</strong> New F&amp;O participant → brokerage revenue from options trading</p>
+      </div>
+    </div>
+    <div class="persona-card" onclick="this.classList.toggle('expanded')">
+      <div class="persona-emoji">🔄</div>
+      <div class="persona-name">The Passive Optimizer</div>
+      <div class="persona-who">Long-term investor, checks portfolio monthly</div>
+      <div class="persona-profile tag-green">🛡️ SAFE · Score: 25/100</div>
+      <div class="persona-details">
+        <p><strong>Behavior:</strong> Uses AI for rebalancing, diversification advice, sector rotation</p>
+        <p><strong>AI adapts:</strong> Focus on asset allocation, long-term trends, SIP optimization</p>
+        <p><strong>Business value:</strong> Sticky user with growing AUM → MTF/margin revenue</p>
+      </div>
+    </div>
+    <div class="persona-card" onclick="this.classList.toggle('expanded')">
+      <div class="persona-emoji">🗣️</div>
+      <div class="persona-name">The Regional Investor</div>
+      <div class="persona-who">Tier-3 city, Hindi-primary, age 30-45</div>
+      <div class="persona-profile tag-purple">🌐 VARIES · Language: Hinglish</div>
+      <div class="persona-details">
+        <p><strong>Behavior:</strong> Speaks in Hinglish, prefers voice input, uses cricket analogies</p>
+        <p><strong>AI adapts:</strong> Full Hinglish responses, cultural references, extra-simple explanations</p>
+        <p><strong>Business value:</strong> Untapped market of 100M+ potential investors in Bharat</p>
+      </div>
+    </div>
+    <div class="persona-card" onclick="this.classList.toggle('expanded')">
+      <div class="persona-emoji">⚡</div>
+      <div class="persona-name">The Confident Trader</div>
+      <div class="persona-who">Started as beginner, now trades F&amp;O weekly</div>
+      <div class="persona-profile tag-red">🔥 RISKY · Score: 70/100</div>
+      <div class="persona-details">
+        <p><strong>Behavior:</strong> Uses sentiment analysis, iron condors, technical indicators for timing</p>
+        <p><strong>AI adapts:</strong> Advanced data and strategies, but always shows risk guardrails and max loss</p>
+        <p><strong>Business value:</strong> High-frequency trader → maximum brokerage revenue per user</p>
+      </div>
+    </div>
+  </div>
+</div>`,
+
+aitech: `
+<div class="hero" style="padding:40px 20px 30px">
+  <div class="section-badge">🧬 AI/ML Technical Architecture</div>
+  <h1>The Science Behind SmartBhai AI</h1>
+  <p>From Reinforcement Learning to RAG pipelines — every AI concept powering the assistant, explained for a product audience.</p>
+</div>
+
+<!-- TECH STACK OVERVIEW -->
+<div class="section reveal">
+  <div class="section-badge">🏗️ System Architecture</div>
+  <h2>End-to-End AI/ML Pipeline</h2>
+  <p class="subtitle">Seven interconnected AI systems work together. Each uses a different ML technique optimized for its task.</p>
+  <div class="arch-layer">
+    <div class="arch-layer-title"><span style="color:var(--danger)">⬤</span> Data Ingestion Layer</div>
+    <div class="arch-items">
+      <div class="arch-item"><div class="ai">📡</div><h5>Real-Time Feeds</h5><p>NSE/BSE tick data, OI snapshots, index values via WebSocket streams</p></div>
+      <div class="arch-item"><div class="ai">👤</div><h5>User Context</h5><p>Portfolio holdings, trade history, P&amp;L, session behavior via broker APIs</p></div>
+      <div class="arch-item"><div class="ai">📰</div><h5>News &amp; Sentiment</h5><p>Financial news, FII/DII data, earnings calendar via NLP pipelines</p></div>
+      <div class="arch-item"><div class="ai">💬</div><h5>Conversation Data</h5><p>Chat history, user queries, feedback signals for RLHF training</p></div>
+    </div>
+  </div>
+  <div class="arch-arrow">▼</div>
+  <div class="arch-layer">
+    <div class="arch-layer-title"><span style="color:var(--accent)">⬤</span> Intelligence Layer (ML Models)</div>
+    <div class="arch-items">
+      <div class="arch-item"><div class="ai">🧠</div><h5>LLM (Core)</h5><p>Llama 3.3 70B / Gemma — conversational AI via OpenRouter</p></div>
+      <div class="arch-item"><div class="ai">🔄</div><h5>RLHF</h5><p>Reinforcement Learning from Human Feedback — adapts to user preferences</p></div>
+      <div class="arch-item"><div class="ai">📊</div><h5>Sentiment Model</h5><p>FinBERT / custom NLP for market sentiment classification</p></div>
+      <div class="arch-item"><div class="ai">🎯</div><h5>Recommendation</h5><p>Collaborative filtering + content-based for strategy suggestions</p></div>
+      <div class="arch-item"><div class="ai">⚠️</div><h5>Risk Scoring</h5><p>Gradient Boosted Trees for portfolio risk classification</p></div>
+      <div class="arch-item"><div class="ai">👤</div><h5>User Profiling</h5><p>Behavioral clustering via unsupervised learning (K-Means / DBSCAN)</p></div>
+    </div>
+  </div>
+  <div class="arch-arrow">▼</div>
+  <div class="arch-layer">
+    <div class="arch-layer-title"><span style="color:var(--success)">⬤</span> Delivery Layer</div>
+    <div class="arch-items">
+      <div class="arch-item"><div class="ai">📲</div><h5>RAG Pipeline</h5><p>Retrieval-Augmented Generation — grounds LLM in real portfolio data</p></div>
+      <div class="arch-item"><div class="ai">🔗</div><h5>Prompt Chaining</h5><p>Multi-step reasoning: analyze → interpret → suggest → explain</p></div>
+      <div class="arch-item"><div class="ai">💾</div><h5>Memory Store</h5><p>Vector DB (Pinecone/Weaviate) for long-term conversation memory</p></div>
+      <div class="arch-item"><div class="ai">🛡️</div><h5>Guardrails</h5><p>Output filtering, SEBI compliance checks, hallucination detection</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- REINFORCEMENT LEARNING -->
+<div class="section reveal">
+  <div class="section-badge">🔄 Core Concept 1</div>
+  <h2>Reinforcement Learning from Human Feedback (RLHF)</h2>
+  <p class="subtitle">The AI doesn't just answer — it learns what GOOD answers look like for each user, and gets better over time.</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🎓</div>
+      <h3>What is RLHF?</h3>
+      <p>Traditional AI gives the same answer to everyone. RLHF trains the model using human feedback signals — thumbs up/down, follow-up questions, trade actions — to learn what each user considers a "good" response. The AI develops a <strong>reward model</strong> that scores responses before showing them.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">📈</div>
+      <h3>How We Use It</h3>
+      <p><strong>Implicit signals:</strong> If user asks a follow-up → previous answer was good (positive reward). If user rephrases the same question → answer was unclear (negative reward). If user trades after AI suggestion → high confidence signal.<br><br><strong>Explicit signals:</strong> Thumbs up/down on each AI response. "Was this helpful?" after strategy suggestions.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">🔄</div>
+      <h3>The RL Loop</h3>
+      <p><strong>State:</strong> User's portfolio + market data + conversation history + profile<br><strong>Action:</strong> AI generates response (explanation, strategy, warning)<br><strong>Reward:</strong> User engagement (follow-up, trade, thumbs up) or disengagement (leave, rephrase, thumbs down)<br><strong>Policy Update:</strong> Model learns to maximize engagement while maintaining accuracy</p>
+    </div>
+  </div>
+  <div style="margin-top:16px;padding:20px;background:var(--card);border:1px solid var(--border);border-radius:14px">
+    <h3 style="font-size:14px;margin-bottom:12px">🔄 RLHF Training Pipeline</h3>
+    <div class="flow-container" style="margin:0">
+      <div class="flow-box"><h4>Phase 1: Supervised Fine-Tuning (SFT)</h4><p>Train base LLM on curated dataset of ideal financial Q&amp;A pairs. Expert financial advisors write gold-standard responses for 5,000+ common Tier-2/3 investor questions in Hinglish and English.</p></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-box"><h4>Phase 2: Reward Model Training</h4><p>Human raters rank multiple AI responses for the same query. "Which explanation of PCR is clearer?" Model learns to predict human preference scores. Separate reward models for: clarity, accuracy, actionability, safety.</p></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-box"><h4>Phase 3: PPO Optimization</h4><p>Proximal Policy Optimization fine-tunes the LLM to maximize reward model scores while staying close to the SFT baseline (prevents reward hacking). KL-divergence penalty ensures AI doesn't become sycophantic.</p></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-box"><h4>Phase 4: Online Learning</h4><p>Continuous improvement from live user feedback. A/B test response styles. Bandit algorithms select optimal explanation depth per user profile. Model improves weekly without full retraining.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- RAG -->
+<div class="section reveal">
+  <div class="section-badge">📲 Core Concept 2</div>
+  <h2>Retrieval-Augmented Generation (RAG)</h2>
+  <p class="subtitle">LLMs hallucinate. RAG grounds every response in real, verified data from the user's actual portfolio and live market feeds.</p>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <div class="card-icon bg-red">❌</div>
+      <h3>Without RAG (Pure LLM)</h3>
+      <p>User: "How is my portfolio?"<br>AI: "Your portfolio is doing well!" ← <strong>Hallucination.</strong> The LLM doesn't actually know the user's holdings. It generates plausible-sounding but fabricated data. Dangerous for financial decisions.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">✅</div>
+      <h3>With RAG (Our Approach)</h3>
+      <p>User: "How is my portfolio?"<br>RAG retrieves: [RELIANCE: 15 shares, +9.4%, ₹40,200] [TCS: 10 shares, +3.9%, ₹39,500]...<br>AI: "Your portfolio is ₹3,32,500, up 5.3%. TATAMOTORS is your top performer at +10.3%." ← <strong>Grounded in real data.</strong></p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🔗</div>
+      <h3>RAG Pipeline Architecture</h3>
+      <p><strong>1. Query Understanding:</strong> NLU classifies intent (portfolio/options/education/sentiment)<br><strong>2. Context Retrieval:</strong> Fetch relevant data from portfolio API, market feeds, options chain, memory store<br><strong>3. Prompt Assembly:</strong> Inject retrieved context into system prompt with structured formatting<br><strong>4. Generation:</strong> LLM generates response grounded in retrieved facts<br><strong>5. Verification:</strong> Post-generation check — do numbers in response match retrieved data?</p>
+    </div>
+  </div>
+</div>
+
+<!-- NLP & SENTIMENT -->
+<div class="section reveal">
+  <div class="section-badge">📝 Core Concept 3</div>
+  <h2>Natural Language Processing (NLP) &amp; Sentiment Analysis</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🗣️</div>
+      <h3>Intent Classification</h3>
+      <p>Every user message is classified into intent categories using a fine-tuned BERT classifier:<br><br>• <strong>portfolio_query</strong> — "mera portfolio kaisa hai?"<br>• <strong>options_explain</strong> — "PCR kya hota hai?"<br>• <strong>strategy_request</strong> — "bullish strategy suggest karo"<br>• <strong>risk_query</strong> — "kitna risk hai?"<br>• <strong>education</strong> — "stop-loss samjhao"<br>• <strong>sentiment_query</strong> — "market ka mood kaisa hai?"<br><br>This routes the query to the right RAG pipeline and data sources.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">📊</div>
+      <h3>Market Sentiment (FinBERT)</h3>
+      <p><strong>FinBERT</strong> is a BERT model fine-tuned on financial text. We use it to:<br><br>• Classify news headlines as Bullish/Bearish/Neutral<br>• Analyze FII/DII commentary sentiment<br>• Score earnings call transcripts<br>• Detect panic/euphoria in social media mentions<br><br>Combined with quantitative indicators (VIX, PCR, RSI), this creates a <strong>multi-modal sentiment score</strong> that's more robust than any single signal.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">🌐</div>
+      <h3>Multilingual NLU (Hinglish)</h3>
+      <p>Tier-2/3 users code-switch between Hindi and English mid-sentence. Standard NLP fails here.<br><br><strong>Our approach:</strong> Fine-tune multilingual model (mBERT / IndicBERT) on Hinglish financial corpus. Training data from:<br>• Indian trading forums &amp; Quora<br>• Hindi financial YouTube transcripts<br>• Synthetic Hinglish Q&amp;A pairs<br><br>"Mera RELIANCE ka stop-loss kahan lagau?" → Intent: risk_management, Entity: RELIANCE, Action: set_stop_loss</p>
+    </div>
+  </div>
+</div>
+
+<!-- BEHAVIORAL PROFILING ML -->
+<div class="section reveal">
+  <div class="section-badge">👤 Core Concept 4</div>
+  <h2>Behavioral Profiling — Unsupervised Learning + Online Classification</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🔬</div>
+      <h3>Feature Engineering</h3>
+      <p>From every user interaction, we extract behavioral features:<br><br>• <strong>Query complexity score</strong> (simple "kya hai" vs "iron condor Greeks")<br>• <strong>Risk vocabulary ratio</strong> (hedge/safe/protect vs aggressive/naked/leverage)<br>• <strong>Topic diversity</strong> (how many different areas explored)<br>• <strong>Session frequency &amp; duration</strong><br>• <strong>Trade-after-AI ratio</strong> (do they act on suggestions?)<br>• <strong>Language entropy</strong> (Hindi-heavy vs English-heavy)<br>• <strong>Follow-up depth</strong> (surface questions vs deep dives)</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">📊</div>
+      <h3>Clustering (Unsupervised)</h3>
+      <p><strong>K-Means / DBSCAN</strong> on behavioral feature vectors discovers natural user segments without predefined labels:<br><br>• Cluster A: Low complexity, high education queries, Hindi-heavy → <strong>Guided Beginner</strong><br>• Cluster B: Medium complexity, balanced topics, growing options interest → <strong>Curious Learner</strong><br>• Cluster C: High complexity, options-heavy, frequent trades → <strong>Active Trader</strong><br><br>New users are assigned to nearest cluster after 3-5 interactions using <strong>online K-NN classification</strong>.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">🔄</div>
+      <h3>Adaptive Risk Scoring</h3>
+      <p>A <strong>Gradient Boosted Decision Tree (XGBoost)</strong> predicts risk appetite on a 0-100 scale:<br><br><strong>Features:</strong> Behavioral signals + portfolio composition + trade history + options usage<br><strong>Target:</strong> Risk category (Safe/Moderate/Risky)<br><strong>Training:</strong> Labeled by financial advisors on historical user data<br><br>The model updates incrementally with each interaction using <strong>online learning</strong> — no batch retraining needed. Score shifts gradually as user behavior evolves.</p>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDATION SYSTEM -->
+<div class="section reveal">
+  <div class="section-badge">🎯 Core Concept 5</div>
+  <h2>Strategy Recommendation Engine</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🤝</div>
+      <h3>Collaborative Filtering</h3>
+      <p>"Users similar to you also found these strategies useful."<br><br>Build a <strong>user-strategy interaction matrix</strong>. Users who asked about Bull Call Spreads also explored Covered Calls. If User A's profile matches User B, recommend strategies B found useful.<br><br>Uses <strong>Matrix Factorization (ALS)</strong> to handle sparse interaction data — most users have tried only 2-3 strategies.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">📋</div>
+      <h3>Content-Based Filtering</h3>
+      <p>Match strategy attributes to user profile:<br><br>• User profile: Safe, Beginner, ₹50K capital<br>• Strategy attributes: Bull Call Spread → defined risk, moderate capital, beginner-friendly<br>• Match score: 0.87 ✅<br><br>• Strategy attributes: Naked Put Selling → unlimited risk, high capital, advanced<br>• Match score: 0.12 ❌ (filtered out)<br><br>Uses <strong>cosine similarity</strong> between user feature vector and strategy feature vector.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">🧮</div>
+      <h3>Contextual Bandits</h3>
+      <p>For real-time decisions like "which insight card to show first?":<br><br><strong>Multi-Armed Bandit with Thompson Sampling</strong> balances exploration (try new content) vs exploitation (show what works).<br><br>Context: time of day, market condition, user profile, recent activity<br>Arms: different insight types (risk alert, opportunity, education, sentiment)<br>Reward: user engagement (tap, read, trade)<br><br>Learns optimal content mix per user segment over time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TECHNICAL INDICATORS ML -->
+<div class="section reveal">
+  <div class="section-badge">📉 Core Concept 6</div>
+  <h2>Technical Analysis — ML-Enhanced Indicators</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🔮</div>
+      <h3>Ensemble Signal Aggregation</h3>
+      <p>Instead of showing 9 indicators separately, a <strong>Random Forest classifier</strong> combines them into one signal:<br><br>Input: [VIX=14.2, PCR=0.93, FII=+630, RSI=58.3, MACD=bullish, BB=middle, MA_pos=above_all, MaxPain_dist=0%, IV_pct=62]<br><br>Output: <strong>MILDLY BULLISH (confidence: 72%)</strong><br><br>Trained on 5 years of historical data — "when these indicators aligned this way, what happened next?"</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">📊</div>
+      <h3>Anomaly Detection</h3>
+      <p><strong>Isolation Forest / Autoencoders</strong> detect unusual market conditions:<br><br>• Sudden OI buildup at unusual strikes → "Something unusual happening at 22,700 strike"<br>• VIX spike + FII selling + PCR drop → "Multiple bearish signals aligning — rare event"<br>• Volume anomaly on a specific stock → "RELIANCE volume 3x normal — check for news"<br><br>These trigger proactive AI alerts even when the user hasn't asked.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">📈</div>
+      <h3>Time-Series Forecasting</h3>
+      <p>For P&amp;L simulation and "what-if" scenarios:<br><br><strong>LSTM / Transformer models</strong> trained on historical price data generate probabilistic forecasts:<br><br>"If NIFTY follows its current momentum pattern, there's a 65% chance it stays in 22,400-22,600 range this week, 20% chance of breakout above 22,600, 15% chance of breakdown below 22,400."<br><br>Used to power the P&amp;L Simulator with probability-weighted outcomes, not just single-point estimates.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MEMORY & KNOWLEDGE -->
+<div class="section reveal">
+  <div class="section-badge">💾 Core Concept 7</div>
+  <h2>Long-Term Memory — Vector Databases &amp; Knowledge Graphs</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--primary)">
+      <div class="card-icon bg-purple">🗄️</div>
+      <h3>Vector Database (Episodic Memory)</h3>
+      <p>Every conversation is embedded into a high-dimensional vector using <strong>sentence-transformers</strong> and stored in <strong>Pinecone / Weaviate</strong>.<br><br>When user asks a new question, we do <strong>semantic search</strong> across their history: "Have they asked something similar before? What was the context?"<br><br>This enables: "Last month you asked about hedging your IT stocks. Since then, TCS has dropped 2%. Want to revisit that hedge?"</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">🕸️</div>
+      <h3>Knowledge Graph (Semantic Memory)</h3>
+      <p>A <strong>Neo4j knowledge graph</strong> maps relationships between financial concepts:<br><br>PCR → explains → Market Sentiment<br>Bull Call Spread → requires → Call Option Buy + Call Option Sell<br>RELIANCE → belongs_to → Energy Sector<br>User → holds → RELIANCE → can_do → Covered Call<br><br>When user asks about a concept, the graph finds related concepts they haven't explored yet → "You learned about PCR. Related concept: Open Interest — want to explore?"</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">🧠</div>
+      <h3>Working Memory (Context Window)</h3>
+      <p>LLMs have limited context windows. We manage this with <strong>hierarchical summarization</strong>:<br><br><strong>Level 1:</strong> Last 5 messages — full text in context<br><strong>Level 2:</strong> Last 20 messages — AI-generated summary<br><strong>Level 3:</strong> All-time — key facts extracted and stored as structured data<br><br>This gives the illusion of infinite memory while staying within token limits. The AI "remembers" everything important without exceeding context window costs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SAFETY & COMPLIANCE -->
+<div class="section reveal">
+  <div class="section-badge">🛡️ Core Concept 8</div>
+  <h2>AI Safety, Guardrails &amp; SEBI Compliance</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--danger)">
+      <div class="card-icon bg-red">🚫</div>
+      <h3>Hallucination Detection</h3>
+      <p><strong>Cross-reference verification:</strong> Every number in AI output is checked against the RAG-retrieved source data. If AI says "RELIANCE is at ₹2,800" but data shows ₹2,680 → response is flagged and regenerated.<br><br><strong>Confidence scoring:</strong> Each claim gets a confidence score. Low-confidence claims are prefixed with "Based on available data..." or omitted entirely.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--accent)">
+      <div class="card-icon bg-amber">⚖️</div>
+      <h3>SEBI Compliance Layer</h3>
+      <p><strong>Output classifier</strong> scans every response for SEBI violations:<br><br>• ❌ Direct buy/sell recommendations → Rewritten as "you may consider"<br>• ❌ Guaranteed return claims → Flagged and blocked<br>• ❌ Missing risk disclaimers → Auto-appended<br>• ✅ Educational framing → Allowed<br>• ✅ Data presentation → Allowed<br><br>Fine-tuned <strong>RoBERTa classifier</strong> trained on SEBI advisory guidelines achieves 97% accuracy on compliance detection.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--success)">
+      <div class="card-icon bg-green">🔒</div>
+      <h3>Adversarial Robustness</h3>
+      <p><strong>Prompt injection defense:</strong> User inputs are sanitized before reaching the LLM. Attempts to override system prompt ("ignore previous instructions") are detected and blocked.<br><br><strong>Jailbreak detection:</strong> Classifier identifies attempts to make AI give unauthorized financial advice.<br><br><strong>Red teaming:</strong> Regular adversarial testing by internal team simulating malicious user behavior to find and patch vulnerabilities.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TECH SUMMARY -->
+<div class="section reveal">
+  <div class="section-badge">📋 Summary</div>
+  <h2>Complete AI/ML Technique Map</h2>
+  <div style="overflow-x:auto">
+  <table class="compare-table">
+    <thead><tr><th>Component</th><th>ML Technique</th><th>Purpose</th><th>Training Data</th></tr></thead>
+    <tbody>
+      <tr><td>Conversational AI</td><td>LLM (Llama 3.3 70B) + RLHF + PPO</td><td>Natural language responses adapted to user</td><td>Financial Q&amp;A pairs + user feedback signals</td></tr>
+      <tr><td>Data Grounding</td><td>RAG (Retrieval-Augmented Generation)</td><td>Prevent hallucination, use real portfolio data</td><td>Live API data (portfolio, market, options)</td></tr>
+      <tr><td>Intent Understanding</td><td>Fine-tuned BERT / IndicBERT</td><td>Classify user query into action categories</td><td>10K+ labeled Hinglish financial queries</td></tr>
+      <tr><td>Market Sentiment</td><td>FinBERT + Ensemble (Random Forest)</td><td>Combine 9 indicators into one signal</td><td>5 years historical indicator + outcome data</td></tr>
+      <tr><td>User Profiling</td><td>K-Means clustering + Online K-NN</td><td>Discover and assign user segments</td><td>Behavioral feature vectors from interactions</td></tr>
+      <tr><td>Risk Scoring</td><td>XGBoost (Gradient Boosted Trees)</td><td>Predict risk appetite 0-100</td><td>Expert-labeled user profiles + trade history</td></tr>
+      <tr><td>Strategy Recommendation</td><td>Collaborative + Content-Based Filtering</td><td>Suggest relevant strategies per user</td><td>User-strategy interaction matrix</td></tr>
+      <tr><td>Content Optimization</td><td>Contextual Bandits (Thompson Sampling)</td><td>Optimal insight card selection</td><td>Real-time engagement signals</td></tr>
+      <tr><td>Anomaly Detection</td><td>Isolation Forest / Autoencoders</td><td>Detect unusual market conditions</td><td>Historical market data distributions</td></tr>
+      <tr><td>Price Forecasting</td><td>LSTM / Transformer time-series</td><td>Probabilistic P&amp;L simulation</td><td>5+ years OHLCV + options data</td></tr>
+      <tr><td>Long-Term Memory</td><td>Vector DB (Pinecone) + Sentence Transformers</td><td>Remember past conversations semantically</td><td>User conversation embeddings</td></tr>
+      <tr><td>Knowledge Mapping</td><td>Knowledge Graph (Neo4j)</td><td>Connect financial concepts for learning paths</td><td>Financial concept ontology</td></tr>
+      <tr><td>Hinglish NLU</td><td>mBERT / IndicBERT fine-tuned</td><td>Understand Hindi-English code-switching</td><td>Indian financial forum + YouTube transcripts</td></tr>
+      <tr><td>Safety</td><td>RoBERTa classifier + rule-based filters</td><td>SEBI compliance, hallucination detection</td><td>SEBI guidelines + adversarial examples</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="text-align:center;margin-top:20px;padding:16px;background:rgba(108,43,217,0.08);border:1px solid rgba(108,43,217,0.2);border-radius:14px">
+    <p style="font-size:13px;color:var(--primary-light)"><strong>Prototype vs Production:</strong> The current prototype demonstrates the RAG pipeline, memory system, adaptive profiling, and LLM integration. The full production system would add RLHF training, FinBERT sentiment, XGBoost risk scoring, vector DB memory, and knowledge graph — all achievable within 3-6 months with a 4-person ML team.</p>
+  </div>
+</div>`,
+
+prototype: `
+<div class="section reveal">
+  <div class="section-badge">🚀 Working Prototype</div>
+  <h2>What We Built</h2>
+  <p class="subtitle">A fully functional mobile-first React app with real AI integration, powered by free open-source models.</p>
+  <div class="cards-grid">
+    <div class="card"><div class="card-icon bg-purple">⚛️</div><h3>Tech Stack</h3><p>React + Vite (mobile-first PWA), OpenRouter API (free Llama 3.3 70B / Gemma), Recharts, localStorage for memory</p></div>
+    <div class="card"><div class="card-icon bg-green">🖥️</div><h3>5 Screens Built</h3><p>Home (market pulse + insights), AI Chat (memory + profiling), Portfolio (charts + risk), Options AI (strategy builder), Learn (glossary + streaks)</p></div>
+    <div class="card"><div class="card-icon bg-amber">🤖</div><h3>AI Capabilities</h3><p>Portfolio-aware responses, 9 market indicators, strategy builder, P&amp;L simulator, memory system, adaptive profiling, Hinglish support</p></div>
+    <div class="card"><div class="card-icon bg-blue">🔄</div><h3>Model Fallback</h3><p>6 free models in priority chain. If one is rate-limited, automatically tries the next. Zero cost to run.</p></div>
+  </div>
+</div>
+<div class="section reveal">
+  <div class="section-badge">✅ Features Checklist</div>
+  <h2>Everything That Works</h2>
+  <div class="cards-grid">
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ Portfolio-aware AI</h3><p>Knows user's actual holdings, P&amp;L, sector allocation</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ Market Sentiment Engine</h3><p>VIX, PCR, FII/DII, RSI, MACD, Bollinger, MAs</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ Options Strategy Builder</h3><p>Bull/Bear/Neutral/Hedge with exact P&amp;L numbers</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ P&amp;L Simulator</h3><p>What-if scenarios with specific ₹ amounts</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ Memory System</h3><p>Persists across sessions via localStorage</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ Adaptive Profiling</h3><p>Safe/Moderate/Risky with visible badge</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ Hinglish Support</h3><p>Natural Hindi-English mix in responses</p></div>
+    <div class="card" style="border-left:3px solid var(--success)"><h3>✅ 35+ Scenario Questions</h3><p>7 categories covering all Tier-2/3 use cases</p></div>
+  </div>
+  <div style="text-align:center;margin-top:30px;padding:30px;background:var(--card);border:1px solid var(--border);border-radius:16px">
+    <p style="font-size:16px;font-weight:700;margin-bottom:8px">Run the Prototype</p>
+    <code style="display:inline-block;background:var(--card2);padding:12px 24px;border-radius:10px;font-size:15px;color:var(--accent);border:1px solid var(--border)">cd smartbhai-ai && npm run dev</code>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px">Opens at localhost:5173 · API key pre-configured in .env</p>
+  </div>
+</div>`,
+};
+
+// ============ TAB SWITCHING ============
+const content = document.getElementById('content');
+const navTabs = document.getElementById('navTabs');
+
+function showTab(tabId) {
+  content.innerHTML = tabs[tabId] || '';
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Trigger reveal animations
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  }, 100);
+  // Animate progress bars if on answers tab
+  if (tabId === 'answers') {
+    setTimeout(() => {
+      document.querySelectorAll('.progress-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }, 300);
+  }
+}
+
+navTabs.addEventListener('click', (e) => {
+  const tab = e.target.closest('.nav-tab');
+  if (tab) showTab(tab.dataset.tab);
+});
+
+// Initial load
+showTab('overview');
+
+// Scroll reveal observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+new MutationObserver(() => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+}).observe(content, { childList: true, subtree: true });
+</script>
+</body>
+</html>

@@ -96,6 +96,11 @@ smartbhai-ai/
 
 ---
 
+
+## Project status
+
+Originated in 2024 as a Hinglish-first prototype for an Indian retail trading copilot. Built around free / open LLMs via OpenRouter so the whole thing could run without a backend. First open-sourced April 2026.
+
 ## 📜 License
 
 MIT. Fork it, ship it, build on top of it. Just don't sell advice you can't back up — always add SEBI disclaimers on anything that faces real users.
